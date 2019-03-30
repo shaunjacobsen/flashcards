@@ -15,5 +15,5 @@ class Deck: Object {
   @objc dynamic var createdBy: String = ""
   @objc dynamic var createdOn: Date = Date()
   @objc dynamic var progressStartedOn: Date?
-  @objc dynamic var cards: [Card]?
+  let cards = List<Card>()
 }

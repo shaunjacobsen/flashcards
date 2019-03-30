@@ -18,5 +18,6 @@ class Card: Object {
   @objc dynamic var lastAnswerMood: String?
   @objc dynamic var lastAnsweredOn: Date?
   @objc dynamic var nextAppearanceOn: Date?
-  @objc dynamic var history: [CardPerformanceHistory]?
+  let history = List<CardPerformanceHistory>()
+  let deck = LinkingObjects(fromType: Deck.self, property: "cards")
 }
