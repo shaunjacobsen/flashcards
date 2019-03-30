@@ -28,7 +28,9 @@ class DecksViewController: UIViewController, UITableViewDelegate, UITableViewDat
     tableView.estimatedRowHeight = 100
   }
   
+  //
   // MARK: - Tableview methods
+  //
   
   func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
     let cell = tableView.dequeueReusableCell(withIdentifier: "DeckCell", for: indexPath) as! DeckCell
@@ -42,7 +44,9 @@ class DecksViewController: UIViewController, UITableViewDelegate, UITableViewDat
     return decks.count
   }
   
+  //
   // MARK: - Data manipulation
+  //
   
   func loadItems() {
     decks = realm.objects(Deck.self)
@@ -50,9 +54,21 @@ class DecksViewController: UIViewController, UITableViewDelegate, UITableViewDat
     tableView.reloadData()
   }
   
+  //
+  // MARK: - IBActions
+  //
+  
+  @IBAction func handleTouchAddButton(_ sender: Any) {
+    performSegue(withIdentifier: "goToAddDeckSegue", sender: self)
+  }
+  
+  
+  //
   // MARK: - Navigation
+  //
   
   override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+
     if segue.identifier == "goToDeckSegue" {
       let destinationVC = segue.destination as! DeckViewController
       
@@ -60,6 +76,11 @@ class DecksViewController: UIViewController, UITableViewDelegate, UITableViewDat
         destinationVC.selectedDeck = decks?[indexPath.row]
       }
     }
+    
+    if segue.identifier == "goToAddDeckSegue" {
+      let destinationVC = segue.destination as! AddDeckViewController
+    }
+    
   }
 
 

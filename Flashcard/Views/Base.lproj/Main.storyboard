@@ -9,6 +9,11 @@
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
+    <customFonts key="customFonts">
+        <array key="HKGrotesk-Regular.otf">
+            <string>HKGrotesk-Regular</string>
+        </array>
+    </customFonts>
     <scenes>
         <!--Decks-->
         <scene sceneID="msF-aE-CKJ">
@@ -28,6 +33,9 @@
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <color key="backgroundColor" red="0.96862745100000003" green="0.97647058819999999" blue="0.98823529409999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <state key="normal" image="add-button-filled"/>
+                                    <connections>
+                                        <action selector="handleTouchAddButton:" destination="t8o-Pq-Hem" eventType="touchUpInside" id="Uky-O8-7Lx"/>
+                                    </connections>
                                 </button>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="DeckCell" id="Mai-oa-Kex">
@@ -59,10 +67,73 @@
                     <connections>
                         <outlet property="tableView" destination="6eK-iE-SsR" id="K0k-Qb-IhM"/>
                         <segue destination="OAk-nm-Jsr" kind="showDetail" identifier="goToDeckSegue" id="9Fb-F3-MpG"/>
+                        <segue destination="Bcq-1V-k7r" kind="show" identifier="goToAddDeckSegue" id="SFR-oV-xla"/>
                     </connections>
                 </viewController>
             </objects>
             <point key="canvasLocation" x="3079.7101449275365" y="158.70535714285714"/>
+        </scene>
+        <!--New Deck-->
+        <scene sceneID="4bq-Cw-ade">
+            <objects>
+                <viewController title="New Deck" id="Bcq-1V-k7r" customClass="AddDeckViewController" customModule="Flashcard" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="qT7-SB-dtZ">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="Xu6-Mq-8aM">
+                                <rect key="frame" x="20" y="160" width="374" height="88.5"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Da9-re-oSP">
+                                        <rect key="frame" x="0.0" y="0.0" width="44.5" height="20.5"/>
+                                        <fontDescription key="fontDescription" name="HKGrotesk-Regular" family="HK Grotesk" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="e.g. French vocabulary" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="Tnt-MX-jIH">
+                                        <rect key="frame" x="0.0" y="28.5" width="374" height="60"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="60" id="Prf-XC-wWS"/>
+                                        </constraints>
+                                        <nil key="textColor"/>
+                                        <fontDescription key="fontDescription" name="HKGrotesk-Regular" family="HK Grotesk" pointSize="22"/>
+                                        <textInputTraits key="textInputTraits" autocapitalizationType="words" autocorrectionType="yes" returnKeyType="done" enablesReturnKeyAutomatically="YES"/>
+                                    </textField>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="Tnt-MX-jIH" secondAttribute="trailing" id="D0p-Bw-eTr"/>
+                                    <constraint firstItem="Tnt-MX-jIH" firstAttribute="leading" secondItem="Xu6-Mq-8aM" secondAttribute="leading" id="PM9-yZ-1SP"/>
+                                </constraints>
+                            </stackView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HDA-M5-VVn">
+                                <rect key="frame" x="177" y="268.5" width="60" height="60"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="60" id="bTp-h3-b3P"/>
+                                    <constraint firstAttribute="width" constant="60" id="qhg-0A-Lls"/>
+                                </constraints>
+                                <state key="normal" title="Button" image="next-button-filled"/>
+                                <connections>
+                                    <action selector="handleTouchNextButton:" destination="Bcq-1V-k7r" eventType="touchUpInside" id="8c4-oI-xRM"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" red="0.96862745100000003" green="0.97647058819999999" blue="0.98823529409999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="Xu6-Mq-8aM" firstAttribute="leading" secondItem="mCa-CA-n6G" secondAttribute="leading" constant="20" id="Iyz-Qz-QT8"/>
+                            <constraint firstItem="Xu6-Mq-8aM" firstAttribute="top" secondItem="mCa-CA-n6G" secondAttribute="top" constant="20" id="P7c-gi-zq7"/>
+                            <constraint firstItem="HDA-M5-VVn" firstAttribute="centerX" secondItem="qT7-SB-dtZ" secondAttribute="centerX" id="Ph4-zB-Ztl"/>
+                            <constraint firstItem="HDA-M5-VVn" firstAttribute="top" secondItem="Xu6-Mq-8aM" secondAttribute="bottom" constant="20" id="dS6-Uo-VEY"/>
+                            <constraint firstItem="mCa-CA-n6G" firstAttribute="trailing" secondItem="Xu6-Mq-8aM" secondAttribute="trailing" constant="20" id="fN7-ur-Mip"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="mCa-CA-n6G"/>
+                    </view>
+                    <connections>
+                        <outlet property="textField" destination="Tnt-MX-jIH" id="tcr-YW-nii"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="oab-ja-nCa" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3080" y="931"/>
         </scene>
         <!--Deck View Controller-->
         <scene sceneID="2Lz-Sq-FWI">
@@ -114,5 +185,6 @@
     </scenes>
     <resources>
         <image name="add-button-filled" width="72" height="72"/>
+        <image name="next-button-filled" width="72" height="72"/>
     </resources>
 </document>

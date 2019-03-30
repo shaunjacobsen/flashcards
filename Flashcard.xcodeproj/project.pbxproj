@@ -24,6 +24,7 @@
 		561684B722500FC50083BA11 /* HKGrotesk-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 561684B122500FC50083BA11 /* HKGrotesk-Regular.otf */; };
 		561684B822500FC50083BA11 /* HKGrotesk-SemiBold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 561684B222500FC50083BA11 /* HKGrotesk-SemiBold.otf */; };
 		561684BA22501E130083BA11 /* DeckViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 561684B922501E130083BA11 /* DeckViewController.swift */; };
+		561684BC225022630083BA11 /* AddDeckViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 561684BB225022630083BA11 /* AddDeckViewController.swift */; };
 		5F47F2B1CA7D6ED2CD121C24 /* Pods_Flashcard.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C1A8557DAA49A9E315E1C36C /* Pods_Flashcard.framework */; };
 /* End PBXBuildFile section */
 
@@ -47,6 +48,7 @@
 		561684B122500FC50083BA11 /* HKGrotesk-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "HKGrotesk-Regular.otf"; sourceTree = "<group>"; };
 		561684B222500FC50083BA11 /* HKGrotesk-SemiBold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "HKGrotesk-SemiBold.otf"; sourceTree = "<group>"; };
 		561684B922501E130083BA11 /* DeckViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeckViewController.swift; sourceTree = "<group>"; };
+		561684BB225022630083BA11 /* AddDeckViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddDeckViewController.swift; sourceTree = "<group>"; };
 		8D8C8EEFC5CA23A340841FC2 /* Pods-Flashcard.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Flashcard.release.xcconfig"; path = "Pods/Target Support Files/Pods-Flashcard/Pods-Flashcard.release.xcconfig"; sourceTree = "<group>"; };
 		A2E6EC05AB9E6614DCCE1DB8 /* Pods-Flashcard.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Flashcard.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Flashcard/Pods-Flashcard.debug.xcconfig"; sourceTree = "<group>"; };
 		C1A8557DAA49A9E315E1C36C /* Pods_Flashcard.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Flashcard.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -129,6 +131,7 @@
 			children = (
 				5616848E224FF18C0083BA11 /* DecksViewController.swift */,
 				561684B922501E130083BA11 /* DeckViewController.swift */,
+				561684BB225022630083BA11 /* AddDeckViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -298,6 +301,7 @@
 				561684BA22501E130083BA11 /* DeckViewController.swift in Sources */,
 				5616848F224FF18C0083BA11 /* DecksViewController.swift in Sources */,
 				561684A622500A0D0083BA11 /* CardPerformanceHistory.swift in Sources */,
+				561684BC225022630083BA11 /* AddDeckViewController.swift in Sources */,
 				5616848D224FF18C0083BA11 /* AppDelegate.swift in Sources */,
 				561684A4225009010083BA11 /* Card.swift in Sources */,
 			);
