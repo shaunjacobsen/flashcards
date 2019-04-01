@@ -7,8 +7,13 @@
 //
 
 import UIKit
+import RealmSwift
 
 class AddDeckViewController: UIViewController, UITextFieldDelegate {
+  
+  let realm = try! Realm()
+  
+  let newDeck = Deck()
 
   //
   // MARK: - IBOutlets
@@ -49,7 +54,18 @@ class AddDeckViewController: UIViewController, UITextFieldDelegate {
     if textField.text!.count < 1 {
       presentNameValidationAlert()
     } else {
-      print(textField.text!)
+      do {
+        try self.realm.write {
+          newDeck.name = textField.text!
+          newDeck.createdOn = Date()
+          newDeck.source = "self"
+          newDeck.cards = List<Card>()
+          self.realm.add(newDeck)
+        }
+        performSegue(withIdentifier: "goToDeckFromNewDeckSegue", sender: self)
+      } catch {
+        print("Error saving to Realm: \(error)")
+      }
     }
   }
   
@@ -57,6 +73,21 @@ class AddDeckViewController: UIViewController, UITextFieldDelegate {
     let validationAlertController = UIAlertController(title: "Invalid deck name", message: "The deck name must include at least one letter.", preferredStyle: .alert)
     validationAlertController.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
     present(validationAlertController, animated: true)
+  }
+  
+  //
+  // MARK: - Navigation
+  //
+  
+  override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+    
+    if segue.identifier == "goToDeckFromNewDeckSegue" {
+      let destinationVC = segue.destination as! DeckViewController
+      
+      destinationVC.selectedDeck = newDeck
+      
+    }
+    
   }
 
 }

@@ -25,6 +25,9 @@
 		561684B822500FC50083BA11 /* HKGrotesk-SemiBold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 561684B222500FC50083BA11 /* HKGrotesk-SemiBold.otf */; };
 		561684BA22501E130083BA11 /* DeckViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 561684B922501E130083BA11 /* DeckViewController.swift */; };
 		561684BC225022630083BA11 /* AddDeckViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 561684BB225022630083BA11 /* AddDeckViewController.swift */; };
+		561684BF225182D70083BA11 /* CardCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 561684BE225182D70083BA11 /* CardCell.xib */; };
+		561684C1225182EB0083BA11 /* CardCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 561684C0225182EB0083BA11 /* CardCell.swift */; };
+		561684C3225188F00083BA11 /* AddCardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 561684C2225188F00083BA11 /* AddCardViewController.swift */; };
 		5F47F2B1CA7D6ED2CD121C24 /* Pods_Flashcard.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C1A8557DAA49A9E315E1C36C /* Pods_Flashcard.framework */; };
 /* End PBXBuildFile section */
 
@@ -49,6 +52,9 @@
 		561684B222500FC50083BA11 /* HKGrotesk-SemiBold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "HKGrotesk-SemiBold.otf"; sourceTree = "<group>"; };
 		561684B922501E130083BA11 /* DeckViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeckViewController.swift; sourceTree = "<group>"; };
 		561684BB225022630083BA11 /* AddDeckViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddDeckViewController.swift; sourceTree = "<group>"; };
+		561684BE225182D70083BA11 /* CardCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CardCell.xib; sourceTree = "<group>"; };
+		561684C0225182EB0083BA11 /* CardCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardCell.swift; sourceTree = "<group>"; };
+		561684C2225188F00083BA11 /* AddCardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCardViewController.swift; sourceTree = "<group>"; };
 		8D8C8EEFC5CA23A340841FC2 /* Pods-Flashcard.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Flashcard.release.xcconfig"; path = "Pods/Target Support Files/Pods-Flashcard/Pods-Flashcard.release.xcconfig"; sourceTree = "<group>"; };
 		A2E6EC05AB9E6614DCCE1DB8 /* Pods-Flashcard.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Flashcard.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Flashcard/Pods-Flashcard.debug.xcconfig"; sourceTree = "<group>"; };
 		C1A8557DAA49A9E315E1C36C /* Pods_Flashcard.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Flashcard.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -121,6 +127,7 @@
 			isa = PBXGroup;
 			children = (
 				56168490224FF18C0083BA11 /* Main.storyboard */,
+				561684BD225182C30083BA11 /* CardCell */,
 				561684A722500D340083BA11 /* DeckCell */,
 			);
 			path = Views;
@@ -132,6 +139,7 @@
 				5616848E224FF18C0083BA11 /* DecksViewController.swift */,
 				561684B922501E130083BA11 /* DeckViewController.swift */,
 				561684BB225022630083BA11 /* AddDeckViewController.swift */,
+				561684C2225188F00083BA11 /* AddCardViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -156,6 +164,15 @@
 				561684B222500FC50083BA11 /* HKGrotesk-SemiBold.otf */,
 			);
 			path = fonts;
+			sourceTree = "<group>";
+		};
+		561684BD225182C30083BA11 /* CardCell */ = {
+			isa = PBXGroup;
+			children = (
+				561684BE225182D70083BA11 /* CardCell.xib */,
+				561684C0225182EB0083BA11 /* CardCell.swift */,
+			);
+			path = CardCell;
 			sourceTree = "<group>";
 		};
 		D95A272CC87278856D167163 /* Pods */ = {
@@ -227,6 +244,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				561684BF225182D70083BA11 /* CardCell.xib in Resources */,
 				561684A922500D460083BA11 /* DeckCell.xib in Resources */,
 				561684B822500FC50083BA11 /* HKGrotesk-SemiBold.otf in Resources */,
 				561684B622500FC50083BA11 /* HKGrotesk-Bold.otf in Resources */,
@@ -300,10 +318,12 @@
 				561684A2225008320083BA11 /* Deck.swift in Sources */,
 				561684BA22501E130083BA11 /* DeckViewController.swift in Sources */,
 				5616848F224FF18C0083BA11 /* DecksViewController.swift in Sources */,
+				561684C3225188F00083BA11 /* AddCardViewController.swift in Sources */,
 				561684A622500A0D0083BA11 /* CardPerformanceHistory.swift in Sources */,
 				561684BC225022630083BA11 /* AddDeckViewController.swift in Sources */,
 				5616848D224FF18C0083BA11 /* AppDelegate.swift in Sources */,
 				561684A4225009010083BA11 /* Card.swift in Sources */,
+				561684C1225182EB0083BA11 /* CardCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

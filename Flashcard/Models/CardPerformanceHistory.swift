@@ -13,5 +13,5 @@ class CardPerformanceHistory: Object {
   @objc dynamic var timestamp: Date = Date()
   @objc dynamic var answerMood: String = ""
   @objc dynamic var nextAppearanceOn: Date = Date()
-  let card = LinkingObjects(fromType: Card.self, property: "history")
+  var card = LinkingObjects(fromType: Card.self, property: "history")
 }

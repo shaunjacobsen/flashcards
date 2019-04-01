@@ -26,6 +26,9 @@ class DecksViewController: UIViewController, UITableViewDelegate, UITableViewDat
     tableView.separatorStyle = .none
     tableView.rowHeight = UITableView.automaticDimension
     tableView.estimatedRowHeight = 100
+    
+    navigationController?.navigationBar.setBackgroundImage(UIImage(), for: UIBarMetrics.default)
+    navigationController?.navigationBar.shadowImage = UIImage()
   }
   
   //
@@ -35,13 +38,19 @@ class DecksViewController: UIViewController, UITableViewDelegate, UITableViewDat
   func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
     let cell = tableView.dequeueReusableCell(withIdentifier: "DeckCell", for: indexPath) as! DeckCell
     
-    cell.deckLabel.text = "Name of deck"
+    cell.deckLabel.text = decks[indexPath.row].name
     
     return cell
   }
   
   func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
     return decks.count
+  }
+  
+  func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    performSegue(withIdentifier: "goToDeckSegue", sender: self)
+    
+    self.tableView.deselectRow(at: indexPath, animated: true)
   }
   
   //
@@ -75,10 +84,6 @@ class DecksViewController: UIViewController, UITableViewDelegate, UITableViewDat
       if let indexPath = tableView.indexPathForSelectedRow {
         destinationVC.selectedDeck = decks?[indexPath.row]
       }
-    }
-    
-    if segue.identifier == "goToAddDeckSegue" {
-      let destinationVC = segue.destination as! AddDeckViewController
     }
     
   }
