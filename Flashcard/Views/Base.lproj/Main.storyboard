@@ -10,9 +10,6 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
-        <array key="HKGrotesk-Bold.otf">
-            <string>HKGrotesk-Bold</string>
-        </array>
         <array key="HKGrotesk-Regular.otf">
             <string>HKGrotesk-Regular</string>
         </array>
@@ -24,7 +21,6 @@
         <!--Decks-->
         <scene sceneID="msF-aE-CKJ">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="KOY-GL-UxL" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <viewController id="t8o-Pq-Hem" customClass="DecksViewController" customModule="Flashcard" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="5tD-dB-4aS">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
@@ -76,6 +72,7 @@
                         <segue destination="aX0-MM-RKM" kind="show" identifier="goToDeckSegue" id="cGM-UM-nsL"/>
                     </connections>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="KOY-GL-UxL" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="3079.7101449275365" y="158.70535714285714"/>
         </scene>
@@ -235,40 +232,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="g2m-bX-itt">
-                                <rect key="frame" x="40" y="114" width="334" height="708"/>
-                                <subviews>
-                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" alignment="center" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="Dkh-WI-AjJ">
-                                        <rect key="frame" x="20" y="305" width="294" height="98"/>
-                                        <subviews>
-                                            <textField opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="249" selected="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Card Front" textAlignment="center" minimumFontSize="21" translatesAutoresizingMaskIntoConstraints="NO" id="WzZ-6X-md0">
-                                                <rect key="frame" x="68" y="0.0" width="158.5" height="39"/>
-                                                <nil key="textColor"/>
-                                                <fontDescription key="fontDescription" name="HKGrotesk-Bold" family="HK Grotesk" pointSize="32"/>
-                                                <textInputTraits key="textInputTraits"/>
-                                                <connections>
-                                                    <outlet property="delegate" destination="el4-hV-8jh" id="pi7-aE-oDf"/>
-                                                </connections>
-                                            </textField>
-                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Notes..." textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="jDF-Pv-6U4">
-                                                <rect key="frame" x="120" y="59" width="54.5" height="39"/>
-                                                <nil key="textColor"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                <textInputTraits key="textInputTraits"/>
-                                                <connections>
-                                                    <outlet property="delegate" destination="el4-hV-8jh" id="hkQ-uj-1ik"/>
-                                                </connections>
-                                            </textField>
-                                        </subviews>
-                                    </stackView>
-                                </subviews>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <constraints>
-                                    <constraint firstItem="Dkh-WI-AjJ" firstAttribute="leading" secondItem="g2m-bX-itt" secondAttribute="leading" constant="20" id="du2-7C-cdL"/>
-                                    <constraint firstItem="Dkh-WI-AjJ" firstAttribute="centerY" secondItem="g2m-bX-itt" secondAttribute="centerY" id="jFE-Ob-JZu"/>
-                                    <constraint firstAttribute="trailing" secondItem="Dkh-WI-AjJ" secondAttribute="trailing" constant="20" id="mSm-Ub-ir0"/>
-                                </constraints>
-                            </view>
                             <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="tZj-fz-Hpb">
                                 <rect key="frame" x="40" y="64" width="334" height="30"/>
                                 <subviews>
@@ -286,35 +249,136 @@
                                     </button>
                                 </subviews>
                             </stackView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="na7-cc-LJA">
-                                <rect key="frame" x="109" y="792" width="196" height="60"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Dq2-Gy-DnJ">
+                                <rect key="frame" x="40" y="114" width="334" height="708"/>
+                                <subviews>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="G0k-hU-ieN">
+                                        <rect key="frame" x="20" y="264" width="294" height="180"/>
+                                        <subviews>
+                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Rear of card..." textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="sBY-Na-1lc">
+                                                <rect key="frame" x="0.0" y="0.0" width="294" height="39"/>
+                                                <nil key="textColor"/>
+                                                <fontDescription key="fontDescription" name="HKGrotesk-SemiBold" family="HK Grotesk" pointSize="32"/>
+                                                <textInputTraits key="textInputTraits" autocapitalizationType="words"/>
+                                                <connections>
+                                                    <outlet property="delegate" destination="el4-hV-8jh" id="KE1-GJ-6q6"/>
+                                                </connections>
+                                            </textField>
+                                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="Y1s-2m-byh">
+                                                <rect key="frame" x="0.0" y="49" width="294" height="131"/>
+                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                                <connections>
+                                                    <outlet property="delegate" destination="el4-hV-8jh" id="Kon-JU-e92"/>
+                                                </connections>
+                                            </textView>
+                                        </subviews>
+                                        <constraints>
+                                            <constraint firstItem="sBY-Na-1lc" firstAttribute="leading" secondItem="G0k-hU-ieN" secondAttribute="leading" id="3OG-ua-XN2"/>
+                                            <constraint firstItem="Y1s-2m-byh" firstAttribute="leading" secondItem="G0k-hU-ieN" secondAttribute="leading" id="4v2-k1-QzU"/>
+                                            <constraint firstAttribute="height" constant="180" id="8Ow-5v-xNC"/>
+                                            <constraint firstAttribute="trailing" secondItem="sBY-Na-1lc" secondAttribute="trailing" id="NmU-oi-q6Y"/>
+                                            <constraint firstAttribute="trailing" secondItem="Y1s-2m-byh" secondAttribute="trailing" id="X4X-1q-67p"/>
+                                        </constraints>
+                                    </stackView>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="Xn2-ot-DLV">
+                                        <rect key="frame" x="20" y="264" width="294" height="180"/>
+                                        <subviews>
+                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Front of card..." textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="fy8-N2-0I3">
+                                                <rect key="frame" x="0.0" y="0.0" width="294" height="39"/>
+                                                <nil key="textColor"/>
+                                                <fontDescription key="fontDescription" name="HKGrotesk-SemiBold" family="HK Grotesk" pointSize="32"/>
+                                                <textInputTraits key="textInputTraits" autocapitalizationType="words"/>
+                                                <connections>
+                                                    <outlet property="delegate" destination="el4-hV-8jh" id="ric-ja-N8i"/>
+                                                </connections>
+                                            </textField>
+                                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="eIf-RZ-0ue">
+                                                <rect key="frame" x="0.0" y="49" width="294" height="131"/>
+                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                                <connections>
+                                                    <outlet property="delegate" destination="el4-hV-8jh" id="fBY-a0-TGY"/>
+                                                </connections>
+                                            </textView>
+                                        </subviews>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="180" id="4gj-1A-h8s"/>
+                                            <constraint firstItem="fy8-N2-0I3" firstAttribute="leading" secondItem="Xn2-ot-DLV" secondAttribute="leading" id="JQ6-ml-ff2"/>
+                                            <constraint firstAttribute="trailing" secondItem="eIf-RZ-0ue" secondAttribute="trailing" id="RCk-pH-eVo"/>
+                                            <constraint firstAttribute="trailing" secondItem="fy8-N2-0I3" secondAttribute="trailing" id="rDe-NH-ezK"/>
+                                            <constraint firstItem="eIf-RZ-0ue" firstAttribute="leading" secondItem="Xn2-ot-DLV" secondAttribute="leading" id="vHz-6P-WoO"/>
+                                        </constraints>
+                                    </stackView>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="60" id="4oa-5v-5Ix"/>
-                                    <constraint firstAttribute="width" constant="196" id="D5S-VF-Tz6"/>
+                                    <constraint firstItem="Xn2-ot-DLV" firstAttribute="leading" secondItem="Dq2-Gy-DnJ" secondAttribute="leading" constant="20" id="4Uc-wv-ABd"/>
+                                    <constraint firstItem="Xn2-ot-DLV" firstAttribute="centerY" secondItem="Dq2-Gy-DnJ" secondAttribute="centerY" id="Gdt-cq-Hjh"/>
+                                    <constraint firstAttribute="trailing" secondItem="Xn2-ot-DLV" secondAttribute="trailing" constant="20" id="Jq1-Nk-rCx"/>
+                                    <constraint firstItem="G0k-hU-ieN" firstAttribute="leading" secondItem="Dq2-Gy-DnJ" secondAttribute="leading" constant="20" id="ZKU-po-Ryf"/>
+                                    <constraint firstItem="G0k-hU-ieN" firstAttribute="centerY" secondItem="Dq2-Gy-DnJ" secondAttribute="centerY" id="ZWQ-WO-nkq"/>
+                                    <constraint firstItem="G0k-hU-ieN" firstAttribute="centerX" secondItem="Dq2-Gy-DnJ" secondAttribute="centerX" id="htG-Ls-Bc2"/>
+                                    <constraint firstAttribute="trailing" secondItem="G0k-hU-ieN" secondAttribute="trailing" constant="20" id="nYR-6T-Tvo"/>
+                                    <constraint firstItem="Xn2-ot-DLV" firstAttribute="centerX" secondItem="Dq2-Gy-DnJ" secondAttribute="centerX" id="s0z-td-cGr"/>
                                 </constraints>
-                                <state key="normal" title="Button" image="flip-card-full-button"/>
-                            </button>
+                            </view>
+                            <stackView opaque="NO" contentMode="scaleToFill" spacing="1" translatesAutoresizingMaskIntoConstraints="NO" id="jPG-Fv-CDi">
+                                <rect key="frame" x="130.5" y="786" width="153" height="76"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="na7-cc-LJA">
+                                        <rect key="frame" x="0.0" y="0.0" width="76" height="76"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="76" id="4oa-5v-5Ix"/>
+                                            <constraint firstAttribute="width" constant="76" id="D5S-VF-Tz6"/>
+                                        </constraints>
+                                        <state key="normal" title="Button" image="flip-button-white"/>
+                                        <connections>
+                                            <action selector="handleTouchFlipCardButton:" destination="el4-hV-8jh" eventType="touchUpInside" id="WW6-1J-IdA"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ofH-AV-hDR">
+                                        <rect key="frame" x="77" y="0.0" width="76" height="76"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="76" id="ZCg-H3-Efa"/>
+                                            <constraint firstAttribute="height" constant="76" id="wNi-CO-Ars"/>
+                                        </constraints>
+                                        <state key="normal" title="Button" image="add-button-white"/>
+                                        <connections>
+                                            <action selector="handleTouchFlipCardButton:" destination="el4-hV-8jh" eventType="touchUpInside" id="uKM-PT-oRZ"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                            </stackView>
                         </subviews>
                         <color key="backgroundColor" red="0.96862745100000003" green="0.97647058819999999" blue="0.98823529409999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="gnI-rn-YFB" firstAttribute="trailing" secondItem="g2m-bX-itt" secondAttribute="trailing" constant="40" id="0VW-YG-xJf"/>
-                            <constraint firstItem="g2m-bX-itt" firstAttribute="top" secondItem="tZj-fz-Hpb" secondAttribute="bottom" constant="20" id="2az-PX-DMO"/>
-                            <constraint firstItem="na7-cc-LJA" firstAttribute="centerX" secondItem="WPB-Q9-6Jl" secondAttribute="centerX" id="5W8-vv-LcP"/>
-                            <constraint firstItem="gnI-rn-YFB" firstAttribute="bottom" secondItem="na7-cc-LJA" secondAttribute="bottom" constant="10" id="ABe-KZ-FUk"/>
+                            <constraint firstItem="Dq2-Gy-DnJ" firstAttribute="top" secondItem="tZj-fz-Hpb" secondAttribute="bottom" constant="20" id="DzF-M4-mdg"/>
                             <constraint firstItem="tZj-fz-Hpb" firstAttribute="top" secondItem="gnI-rn-YFB" secondAttribute="top" constant="20" id="Ebs-zH-McK"/>
+                            <constraint firstItem="Dq2-Gy-DnJ" firstAttribute="leading" secondItem="gnI-rn-YFB" secondAttribute="leading" constant="40" id="HjC-47-IpQ"/>
                             <constraint firstItem="tZj-fz-Hpb" firstAttribute="leading" secondItem="gnI-rn-YFB" secondAttribute="leading" constant="40" id="PIZ-ax-RKg"/>
-                            <constraint firstItem="gnI-rn-YFB" firstAttribute="bottom" secondItem="g2m-bX-itt" secondAttribute="bottom" constant="40" id="bhQ-3U-6xv"/>
-                            <constraint firstItem="g2m-bX-itt" firstAttribute="leading" secondItem="gnI-rn-YFB" secondAttribute="leading" constant="40" id="hw6-bY-bsf"/>
+                            <constraint firstItem="gnI-rn-YFB" firstAttribute="bottom" secondItem="jPG-Fv-CDi" secondAttribute="bottom" id="XJw-Pu-fVd"/>
+                            <constraint firstItem="gnI-rn-YFB" firstAttribute="bottom" secondItem="Dq2-Gy-DnJ" secondAttribute="bottom" constant="40" id="h7N-yV-AOZ"/>
+                            <constraint firstItem="gnI-rn-YFB" firstAttribute="trailing" secondItem="Dq2-Gy-DnJ" secondAttribute="trailing" constant="40" id="iAK-cs-sWN"/>
+                            <constraint firstItem="jPG-Fv-CDi" firstAttribute="centerX" secondItem="WPB-Q9-6Jl" secondAttribute="centerX" id="keG-Jm-P0g"/>
                             <constraint firstItem="gnI-rn-YFB" firstAttribute="trailing" secondItem="tZj-fz-Hpb" secondAttribute="trailing" constant="40" id="lRd-Sk-Qtl"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="gnI-rn-YFB"/>
                     </view>
                     <connections>
-                        <outlet property="cardFrontNotesTextField" destination="jDF-Pv-6U4" id="hCu-Uc-fxE"/>
-                        <outlet property="cardFrontTextField" destination="WzZ-6X-md0" id="nub-P8-ocY"/>
-                        <outlet property="cardView" destination="g2m-bX-itt" id="kzE-hV-faQ"/>
-                        <outlet property="cardViewBottomDistanceConstraint" destination="bhQ-3U-6xv" id="nWf-rs-y42"/>
-                        <outlet property="swapCardButtonBottomDistanceConstraint" destination="ABe-KZ-FUk" id="RWp-jp-6gJ"/>
+                        <outlet property="actionButtonsStackViewBottomConstraint" destination="XJw-Pu-fVd" id="EYT-1H-qjd"/>
+                        <outlet property="cardFrontNotesTextField" destination="eIf-RZ-0ue" id="7ly-NM-t36"/>
+                        <outlet property="cardFrontTextField" destination="fy8-N2-0I3" id="qO5-9v-Amv"/>
+                        <outlet property="cardStackView" destination="Xn2-ot-DLV" id="I5j-pF-aAD"/>
+                        <outlet property="cardView" destination="Dq2-Gy-DnJ" id="Lb0-A5-Qzs"/>
+                        <outlet property="cardViewBottomDistanceConstraint" destination="h7N-yV-AOZ" id="e24-c9-Cb2"/>
+                        <outlet property="cardViewLeadingConstraint" destination="HjC-47-IpQ" id="TCZ-L3-4zH"/>
+                        <outlet property="cardViewTrailingConstraint" destination="iAK-cs-sWN" id="ST5-Xg-Wjj"/>
+                        <outlet property="reverseCardNotesTextField" destination="Y1s-2m-byh" id="byh-aG-uqI"/>
+                        <outlet property="reverseCardStackView" destination="G0k-hU-ieN" id="RK8-4t-VEx"/>
+                        <outlet property="reverseCardTextField" destination="sBY-Na-1lc" id="WGd-T5-NqY"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="UIv-iG-Jsn" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -344,7 +408,8 @@
     </scenes>
     <resources>
         <image name="add-button-filled" width="72" height="72"/>
-        <image name="flip-card-full-button" width="196" height="60"/>
+        <image name="add-button-white" width="76" height="76"/>
+        <image name="flip-button-white" width="76" height="76"/>
         <image name="next-button-filled" width="72" height="72"/>
     </resources>
     <inferredMetricsTieBreakers>

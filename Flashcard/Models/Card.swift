@@ -20,4 +20,6 @@ class Card: Object {
   @objc dynamic var nextAppearanceOn: Date?
   var history = List<CardPerformanceHistory>()
   var deck = LinkingObjects(fromType: Deck.self, property: "cards")
+  
+  
 }

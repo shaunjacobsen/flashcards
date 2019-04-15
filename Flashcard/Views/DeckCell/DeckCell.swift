@@ -18,11 +18,11 @@ class DeckCell: UITableViewCell {
     
     deckCell.layer.cornerRadius = 6
     deckCell.layer.shadowPath = UIBezierPath(roundedRect: deckCell.bounds, cornerRadius: deckCell.layer.cornerRadius).cgPath
-    deckCell.layer.shadowColor = UIColor(red: 0.00, green: 0.00, blue: 0.00, alpha: 0.12).cgColor
-    deckCell.layer.shadowOpacity = 0.12
-    deckCell.layer.shadowOffset = CGSize(width: 0, height: 0)
-    deckCell.layer.shadowRadius = 0
-    deckCell.layer.masksToBounds = false
+    
+    deckCell.layer.shadowColor = UIColor.black.cgColor
+    deckCell.layer.shadowOpacity = 0.11
+    deckCell.layer.shadowOffset = CGSize(width: 0, height: 3)
+    deckCell.layer.shadowRadius = 8
   }
 
   override func setSelected(_ selected: Bool, animated: Bool) {

@@ -40,11 +40,10 @@ class DeckViewController: UIViewController, UITableViewDelegate, UITableViewData
 
     startReviewButton.layer.cornerRadius = 6
     startReviewButton.layer.shadowPath = UIBezierPath(roundedRect: startReviewButton.bounds, cornerRadius: startReviewButton.layer.cornerRadius).cgPath
-    startReviewButton.layer.shadowColor = UIColor(red: 0.00, green: 0.00, blue: 0.00, alpha: 0.12).cgColor
-    startReviewButton.layer.shadowOpacity = 0.12
-    startReviewButton.layer.shadowOffset = CGSize(width: 0, height: 0)
-    startReviewButton.layer.shadowRadius = 0
-    startReviewButton.layer.masksToBounds = false
+    startReviewButton.layer.shadowColor = UIColor.black.cgColor
+    startReviewButton.layer.shadowOpacity = 0.11
+    startReviewButton.layer.shadowOffset = CGSize(width: 0, height: 3)
+    startReviewButton.layer.shadowRadius = 8
   }
   
   override func viewWillAppear(_ animated: Bool) {
