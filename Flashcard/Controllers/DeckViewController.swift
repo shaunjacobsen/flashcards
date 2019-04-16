@@ -26,7 +26,6 @@ class DeckViewController: UIViewController, UITableViewDelegate, UITableViewData
   var selectedDeck: Deck? {
     didSet {
       loadItems()
-      
     }
   }
 
@@ -49,6 +48,10 @@ class DeckViewController: UIViewController, UITableViewDelegate, UITableViewData
   override func viewWillAppear(_ animated: Bool) {
     if let deckName = selectedDeck?.name {
       self.navigationController?.title = deckName
+    }
+    
+    if selectedDeck !== nil {
+      self.cardTable.reloadData()
     }
   }
 
@@ -77,6 +80,19 @@ class DeckViewController: UIViewController, UITableViewDelegate, UITableViewData
   func loadItems() {
     cards = selectedDeck?.cards.sorted(byKeyPath: "nextAppearanceOn", ascending: true)
     
+  }
+  
+  //
+  // MARK: - Navigation
+  //
+  
+  override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+    if segue.identifier == "goToAddNewCardSegue" {
+      let destinationVC = segue.destination as! AddCardViewController
+      if let deck = selectedDeck {
+        destinationVC.selectedDeck = selectedDeck
+      }
+    }
   }
 
   

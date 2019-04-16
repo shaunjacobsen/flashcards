@@ -17,12 +17,10 @@ class CardCell: UITableViewCell {
     super.awakeFromNib()
     
     cardCell.layer.cornerRadius = 6
-    cardCell.layer.shadowPath = UIBezierPath(roundedRect: cardCell.bounds, cornerRadius: cardCell.layer.cornerRadius).cgPath
-    cardCell.layer.shadowColor = UIColor(red: 0.00, green: 0.00, blue: 0.00, alpha: 0.12).cgColor
-    cardCell.layer.shadowOpacity = 0.12
-    cardCell.layer.shadowOffset = CGSize(width: 0, height: 0)
-    cardCell.layer.shadowRadius = 0
-    cardCell.layer.masksToBounds = false
+    cardCell.layer.shadowColor = UIColor.black.cgColor
+    cardCell.layer.shadowOpacity = 0.08
+    cardCell.layer.shadowOffset = CGSize(width: 0, height: 1)
+    cardCell.layer.shadowRadius = 8
   }
   
   override func setSelected(_ selected: Bool, animated: Bool) {
