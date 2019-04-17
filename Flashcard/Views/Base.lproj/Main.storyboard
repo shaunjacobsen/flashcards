@@ -94,6 +94,9 @@
                                 <state key="normal" title="Start Review">
                                     <color key="titleColor" red="0.2901960784" green="0.2901960784" blue="0.2901960784" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
+                                <connections>
+                                    <action selector="handleTouchReviewDeckButton:" destination="aX0-MM-RKM" eventType="touchUpInside" id="yUw-G3-fiK"/>
+                                </connections>
                             </button>
                             <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" alignment="bottom" translatesAutoresizingMaskIntoConstraints="NO" id="c4a-Di-AA7">
                                 <rect key="frame" x="20" y="280" width="374" height="40"/>
@@ -155,11 +158,27 @@
                         <outlet property="cardTable" destination="zCc-Nn-hMb" id="San-34-9SX"/>
                         <outlet property="startReviewButton" destination="zx9-26-8Kw" id="pW3-rC-pBn"/>
                         <segue destination="el4-hV-8jh" kind="showDetail" identifier="goToAddNewCardSegue" id="NNP-Dz-MUL"/>
+                        <segue destination="9Ea-sX-UZb" kind="showDetail" identifier="goToReviewDeckSegue" id="EHL-9f-LrE"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="76E-cL-nbz" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="4014" y="159"/>
+        </scene>
+        <!--Review Deck View Controller-->
+        <scene sceneID="kd4-4S-XS4">
+            <objects>
+                <viewController id="9Ea-sX-UZb" customClass="ReviewDeckViewController" customModule="Flashcard" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="o50-3T-x8x">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" red="0.96862745100000003" green="0.97647058819999999" blue="0.98823529409999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <viewLayoutGuide key="safeArea" id="haT-ii-3Ld"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="IpO-RW-nw1" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4943" y="159"/>
         </scene>
         <!--New Deck-->
         <scene sceneID="4bq-Cw-ade">
@@ -404,6 +423,12 @@
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" red="0.96862745100000003" green="0.97647058819999999" blue="0.98823529409999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <color key="barTintColor" red="0.96862745100000003" green="0.97647058819999999" blue="0.98823529409999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <textAttributes key="titleTextAttributes">
+                            <fontDescription key="fontDescription" type="boldSystem" pointSize="0.0"/>
+                        </textAttributes>
+                        <textAttributes key="largeTitleTextAttributes">
+                            <fontDescription key="fontDescription" type="boldSystem" pointSize="0.0"/>
+                        </textAttributes>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>

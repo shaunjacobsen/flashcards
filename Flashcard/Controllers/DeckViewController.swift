@@ -19,8 +19,13 @@ class DeckViewController: UIViewController, UITableViewDelegate, UITableViewData
   
   @IBOutlet weak var startReviewButton: UIButton!
   @IBOutlet weak var cardTable: UITableView!
+  
   @IBAction func handleTouchNewCardButton(_ sender: UIButton) {
     performSegue(withIdentifier: "goToAddNewCardSegue", sender: self)
+  }
+  
+  @IBAction func handleTouchReviewDeckButton(_ sender: UIButton) {
+    performSegue(withIdentifier: "goToReviewDeckSegue", sender: self)
   }
   
   var selectedDeck: Deck? {
@@ -48,6 +53,7 @@ class DeckViewController: UIViewController, UITableViewDelegate, UITableViewData
   override func viewWillAppear(_ animated: Bool) {
     if let deckName = selectedDeck?.name {
       self.navigationController?.title = deckName
+      self.navigationItem.title = deckName
     }
     
     if selectedDeck !== nil {
@@ -89,6 +95,13 @@ class DeckViewController: UIViewController, UITableViewDelegate, UITableViewData
   override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
     if segue.identifier == "goToAddNewCardSegue" {
       let destinationVC = segue.destination as! AddCardViewController
+      if let deck = selectedDeck {
+        destinationVC.selectedDeck = selectedDeck
+      }
+    }
+    
+    if segue.identifier == "goToReviewDeckSegue" {
+      let destinationVC = segue.destination as! ReviewDeckViewController
       if let deck = selectedDeck {
         destinationVC.selectedDeck = selectedDeck
       }
