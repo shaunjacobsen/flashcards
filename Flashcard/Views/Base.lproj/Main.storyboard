@@ -172,13 +172,60 @@
                     <view key="view" contentMode="scaleToFill" id="o50-3T-x8x">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" red="0.96862745100000003" green="0.97647058819999999" blue="0.98823529409999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="wAZ-gx-iL8">
+                                <rect key="frame" x="40" y="64" width="334" height="18"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="249" horizontalCompressionResistancePriority="749" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rX9-gz-cLf">
+                                        <rect key="frame" x="0.0" y="0.0" width="18" height="18"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="18" id="cIT-Ja-paN"/>
+                                            <constraint firstAttribute="height" constant="18" id="cvz-bH-ZU5"/>
+                                        </constraints>
+                                        <state key="normal" image="close-icon">
+                                            <color key="titleColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="handleTapCloseButton:" destination="9Ea-sX-UZb" eventType="touchUpInside" id="Uha-4n-N5N"/>
+                                        </connections>
+                                    </button>
+                                    <view userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="OG5-Or-8kN">
+                                        <rect key="frame" x="38" y="3" width="296" height="12"/>
+                                        <subviews>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Mog-cx-idr">
+                                                <rect key="frame" x="0.0" y="0.0" width="296" height="12"/>
+                                                <color key="backgroundColor" red="0.42745098039215684" green="0.83529411764705885" blue="0.92941176470588238" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            </view>
+                                        </subviews>
+                                        <color key="backgroundColor" red="0.84705882352941175" green="0.84705882352941175" blue="0.84705882352941175" alpha="0.5" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="trailing" secondItem="Mog-cx-idr" secondAttribute="trailing" id="PdV-eO-GQY"/>
+                                            <constraint firstAttribute="height" constant="12" id="YCP-f6-Xu8"/>
+                                            <constraint firstItem="Mog-cx-idr" firstAttribute="leading" secondItem="OG5-Or-8kN" secondAttribute="leading" id="ct7-Bw-5v8"/>
+                                            <constraint firstAttribute="bottom" secondItem="Mog-cx-idr" secondAttribute="bottom" id="hyZ-hu-r2X"/>
+                                            <constraint firstItem="Mog-cx-idr" firstAttribute="top" secondItem="OG5-Or-8kN" secondAttribute="top" id="j8W-7W-ZHs"/>
+                                        </constraints>
+                                    </view>
+                                </subviews>
+                            </stackView>
+                        </subviews>
+                        <color key="backgroundColor" red="0.96078431372549022" green="0.96078431372549022" blue="0.96078431372549022" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="haT-ii-3Ld" firstAttribute="trailing" secondItem="wAZ-gx-iL8" secondAttribute="trailing" constant="40" id="8Br-0j-UDU"/>
+                            <constraint firstItem="wAZ-gx-iL8" firstAttribute="top" secondItem="haT-ii-3Ld" secondAttribute="top" constant="20" id="Ori-av-4KY"/>
+                            <constraint firstItem="wAZ-gx-iL8" firstAttribute="leading" secondItem="haT-ii-3Ld" secondAttribute="leading" constant="40" id="tHX-dS-2wj"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="haT-ii-3Ld"/>
                     </view>
+                    <connections>
+                        <outlet property="progressBar" destination="OG5-Or-8kN" id="SAf-rd-nFE"/>
+                        <outlet property="progressBarColored" destination="Mog-cx-idr" id="Qd2-2l-VuJ"/>
+                        <outlet property="progressBarColoredTrailingConstraint" destination="PdV-eO-GQY" id="nAt-o4-pGH"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="IpO-RW-nw1" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4943" y="159"/>
+            <point key="canvasLocation" x="4942.0289855072469" y="158.70535714285714"/>
         </scene>
         <!--New Deck-->
         <scene sceneID="4bq-Cw-ade">
@@ -443,6 +490,7 @@
     <resources>
         <image name="add-button-filled" width="72" height="72"/>
         <image name="add-button-white" width="76" height="76"/>
+        <image name="close-icon" width="18" height="18"/>
         <image name="flip-button-white" width="76" height="76"/>
         <image name="next-button-filled" width="72" height="72"/>
     </resources>

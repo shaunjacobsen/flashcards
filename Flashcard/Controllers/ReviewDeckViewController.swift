@@ -19,6 +19,22 @@ class ReviewDeckViewController: UIViewController {
   var swipeableCards: [SwipeableCard] = []
   var currentIndex = 0
   
+  @IBOutlet weak var progressBar: UIView!
+  @IBOutlet weak var progressBarColored: UIView!
+  @IBOutlet weak var progressBarColoredTrailingConstraint: NSLayoutConstraint!
+  
+  @IBAction func handleTapCloseButton(_ sender: UIButton) {
+    let alertController = UIAlertController(title: "Exit Review?", message: "Are you sure you'd like to quit your review? Your progress up until this point is saved.", preferredStyle: .alert)
+    let yesAction = UIAlertAction(title: "Yes, exit", style: .cancel) { (_) in
+      self.dismiss(animated: true, completion: nil)
+    }
+    let cancelAction = UIAlertAction(title: "No, keep reviewing", style: .default, handler: nil)
+    alertController.addAction(yesAction)
+    alertController.addAction(cancelAction)
+    present(alertController, animated: true)
+  }
+  
+  
   override func viewWillAppear(_ animated: Bool) {
     super.viewWillAppear(animated)
     
@@ -42,11 +58,20 @@ class ReviewDeckViewController: UIViewController {
       
       animateCardAfterSwiping()
       
+      print("allSwipeableCards (\(allSwipeableCards.count)): \(allSwipeableCards)")
+      print("swipeableCards (\(swipeableCards.count)): \(swipeableCards)")
+      
     }
   }
 
   override func viewDidLoad() {
     super.viewDidLoad()
+    
+    progressBar.layer.cornerRadius = 6
+    progressBarColored.layer.cornerRadius = 6
+    progressBarColoredTrailingConstraint.constant = self.progressBar.frame.width
+    view.layoutIfNeeded()
+
   }
   
   //
@@ -55,7 +80,7 @@ class ReviewDeckViewController: UIViewController {
   
   func createCard(from card: Card) -> SwipeableCard {
     let cardView = SwipeableCard()
-    cardView.frame = CGRect(x: 40, y: 100, width: screenSize.width - 80, height: screenSize.height - 220)
+    cardView.frame = CGRect(x: 40, y: 120, width: screenSize.width - 80, height: screenSize.height - 220)
     cardView.backgroundColor = UIColor.white
     cardView.mainLabel.text = card.questionText
     cardView.secondaryLabel.text = card.questionNotes
@@ -73,6 +98,7 @@ class ReviewDeckViewController: UIViewController {
     cardView.isUserInteractionEnabled = false
     cardView.addGestureRecognizer(cardView.panGestureRecognizer)
     cardView.addGestureRecognizer(cardView.tapGestureRecognizer)
+    cardView.addGestureRecognizer(cardView.longPressGestureRecognizer)
     
     
     return cardView
@@ -98,6 +124,7 @@ class ReviewDeckViewController: UIViewController {
       view.insertSubview(swipeableCards[MAX_BUFFER_SIZE - 1], belowSubview: swipeableCards[MAX_BUFFER_SIZE - 1])
     }
     animateCardAfterSwiping()
+    refreshProgressBar()
   }
   
   func animateCardAfterSwiping() {
@@ -108,6 +135,20 @@ class ReviewDeckViewController: UIViewController {
         }
         card.layer.opacity = 100
       })
+    }
+  }
+  
+  func refreshProgressBar() {
+    let widthOfProgressPlaceholder = progressBar.frame.width
+    let totalCards = self.allSwipeableCards.count
+    let spaceToOccupy = (widthOfProgressPlaceholder / CGFloat(totalCards)) * CGFloat(totalCards - self.currentIndex)
+    UIView.animate(withDuration: 0.3) {
+      self.progressBarColoredTrailingConstraint.constant = spaceToOccupy
+      
+      self.view.layoutIfNeeded()
+      
+
+            
     }
   }
 
@@ -141,6 +182,10 @@ extension ReviewDeckViewController: SwipeableCardDelegate {
 extension ReviewDeckViewController: TappableCardDelegate {
   func cardTapped(card: SwipeableCard) {
     print("Tapped")
+  }
+  
+  func cardLongPressed(card: SwipeableCard) {
+    print("Long press")
   }
   
   

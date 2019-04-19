@@ -21,8 +21,9 @@ protocol SwipeableCardDelegate: NSObjectProtocol {
   func currentCardStatus(card: SwipeableCard, distance: CGFloat)
 }
 
-protocol TappableCardDelegate: NSObjectProtocol {
+@objc protocol TappableCardDelegate: NSObjectProtocol {
   func cardTapped(card: SwipeableCard)
+  @objc optional func cardLongPressed(card: SwipeableCard)
 }
 
 class SwipeableCard: UIView {
@@ -40,6 +41,7 @@ class SwipeableCard: UIView {
   
   lazy var panGestureRecognizer = UIPanGestureRecognizer(target: self, action: #selector(self.handleDragging))
   lazy var tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(cardViewTapped))
+  lazy var longPressGestureRecognizer = UILongPressGestureRecognizer(target: self, action: #selector(cardViewLongPressed))
   
   weak var swipeDelegate: SwipeableCardDelegate?
   weak var tapDelegate: TappableCardDelegate?
@@ -91,6 +93,10 @@ class SwipeableCard: UIView {
     
   }
   
+  @objc func cardViewLongPressed() {
+    tapDelegate?.cardLongPressed!(card: self)
+  }
+  
   @objc func handleDragging(_ gestureRecognizer: UIPanGestureRecognizer) {
     xCenter = gestureRecognizer.translation(in: self).x
     yCenter = gestureRecognizer.translation(in: self).y
@@ -130,7 +136,7 @@ class SwipeableCard: UIView {
     UIView.animate(withDuration: 0.15) {
       if xCenter > THRESHOLD_MARGIN {
         // green
-        self.layer.backgroundColor = UIColor(red:0.52, green:0.94, blue:0.28, alpha:1.0).cgColor
+        self.layer.backgroundColor = UIColor(red:0.72, green:0.91, blue:0.53, alpha:1.0).cgColor
         self.mainLabel.textColor = UIColor.white
         self.secondaryLabel.textColor = UIColor(red: 1, green: 1, blue: 1, alpha: 0.8)
       } else if xCenter < -THRESHOLD_MARGIN {
