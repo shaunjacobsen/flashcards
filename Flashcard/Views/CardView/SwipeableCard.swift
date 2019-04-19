@@ -75,18 +75,20 @@ class SwipeableCard: UIView {
           if let frontText = self.frontLabel {
             self.mainLabel.text = frontText
             self.secondaryLabel.text = self.frontNotes ?? ""
+            self.isReversedCardShowing = false
           }
         } else {
           if let rearText = self.rearLabel {
             self.mainLabel.text = rearText
             self.secondaryLabel.text = self.rearNotes ?? ""
+            self.isReversedCardShowing = true
           }
         }
         
       })
     }, completion: { _ in
     })
-    isReversedCardShowing = true
+    
   }
   
   @objc func handleDragging(_ gestureRecognizer: UIPanGestureRecognizer) {
@@ -96,11 +98,13 @@ class SwipeableCard: UIView {
     case .began:
       originalPoint = self.center;
       break;
+      
     case .changed:
       let rotationStrength = min(xCenter / UIScreen.main.bounds.size.width, 1)
       let rotationAngle = .pi/12 * rotationStrength
       let scale = max(1 - abs(rotationStrength) / SCALE_STRENGTH, SCALE_RANGE)
       center = CGPoint(x: originalPoint.x + xCenter, y: originalPoint.y + yCenter)
+      colorize(xCenter: xCenter, yCenter: yCenter)
       if !didGenerateFeedback && (xCenter > THRESHOLD_MARGIN || xCenter < -THRESHOLD_MARGIN || yCenter < -VERTICAL_THRESHOLD_MARGIN) {
         generator.impactOccurred()
         didGenerateFeedback = true
@@ -122,7 +126,33 @@ class SwipeableCard: UIView {
     }
   }
   
-  func afterSwipeAction() {
+  func colorize(xCenter: CGFloat, yCenter: CGFloat) {
+    UIView.animate(withDuration: 0.15) {
+      if xCenter > THRESHOLD_MARGIN {
+        // green
+        self.layer.backgroundColor = UIColor(red:0.52, green:0.94, blue:0.28, alpha:1.0).cgColor
+        self.mainLabel.textColor = UIColor.white
+        self.secondaryLabel.textColor = UIColor(red: 1, green: 1, blue: 1, alpha: 0.8)
+      } else if xCenter < -THRESHOLD_MARGIN {
+        // red
+        self.layer.backgroundColor = UIColor(red:1.00, green:0.25, blue:0.34, alpha:1.0).cgColor
+        self.mainLabel.textColor = UIColor.white
+        self.secondaryLabel.textColor = UIColor(red: 1, green: 1, blue: 1, alpha: 0.8)
+      } else if yCenter < -VERTICAL_THRESHOLD_MARGIN {
+        // yellow
+        self.layer.backgroundColor = UIColor(red:0.99, green:0.83, blue:0.03, alpha:1.0).cgColor
+        self.mainLabel.textColor = UIColor.black
+        self.secondaryLabel.textColor = UIColor.darkGray
+      } else {
+        self.layer.backgroundColor = UIColor.white.cgColor
+        self.mainLabel.textColor = UIColor.black
+        self.secondaryLabel.textColor = UIColor.darkGray
+      }
+    }
+    
+  }
+  
+  private func afterSwipeAction() {
     if xCenter > THRESHOLD_MARGIN {
       cardWentRight()
     } else if xCenter < -THRESHOLD_MARGIN {
@@ -138,7 +168,7 @@ class SwipeableCard: UIView {
     }
   }
   
-  func cardWentLeft() {
+  private func cardWentLeft() {
     let finishPoint = CGPoint(x: 2 * xCenter + originalPoint.x, y: frame.size.height * 2)
     UIView.animate(withDuration: 0.5, animations: {
       self.center = finishPoint
@@ -150,7 +180,7 @@ class SwipeableCard: UIView {
     swipeDelegate?.cardMovement(card: self)
   }
   
-  func cardWentRight() {
+  private func cardWentRight() {
     let finishPoint = CGPoint(x: 2 * xCenter + originalPoint.x, y: frame.size.height * 2)
     UIView.animate(withDuration: 0.5, animations: {
       self.center = finishPoint
@@ -162,7 +192,7 @@ class SwipeableCard: UIView {
     swipeDelegate?.cardMovement(card: self)
   }
   
-  func cardWentUp() {
+  private func cardWentUp() {
     let finishPoint = CGPoint(x: 0, y: 1000)
     UIView.animate(withDuration: 0.5, animations: {
       self.center = finishPoint

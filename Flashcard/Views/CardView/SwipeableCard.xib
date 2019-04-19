@@ -47,7 +47,6 @@
                     </subviews>
                 </stackView>
             </subviews>
-            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
                 <constraint firstItem="zGF-g7-ikI" firstAttribute="trailing" secondItem="yoc-ry-Drg" secondAttribute="trailing" constant="20" id="6aU-mi-4ei"/>
                 <constraint firstItem="yoc-ry-Drg" firstAttribute="leading" secondItem="zGF-g7-ikI" secondAttribute="leading" constant="20" id="Cr3-to-5bB"/>

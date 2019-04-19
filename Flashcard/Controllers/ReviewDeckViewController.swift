@@ -56,6 +56,7 @@ class ReviewDeckViewController: UIViewController {
   func createCard(from card: Card) -> SwipeableCard {
     let cardView = SwipeableCard()
     cardView.frame = CGRect(x: 40, y: 100, width: screenSize.width - 80, height: screenSize.height - 220)
+    cardView.backgroundColor = UIColor.white
     cardView.mainLabel.text = card.questionText
     cardView.secondaryLabel.text = card.questionNotes
     cardView.frontLabel = card.questionText
@@ -66,6 +67,7 @@ class ReviewDeckViewController: UIViewController {
     cardView.layer.shadowOpacity = 0.11
     cardView.layer.shadowOffset = CGSize(width: 0, height: 3)
     cardView.layer.shadowRadius = 14
+    cardView.layer.cornerRadius = 12
     cardView.swipeDelegate = self
     cardView.tapDelegate = self
     cardView.isUserInteractionEnabled = false
