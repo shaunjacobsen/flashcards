@@ -10,7 +10,7 @@ import UIKit
 
 let screenSize = UIScreen.main.bounds
 let SEPARATOR_DISTANCE = 8
-let MAX_BUFFER_SIZE = 3
+let MAX_BUFFER_SIZE = 1
 
 class ReviewDeckViewController: UIViewController {
   
@@ -58,13 +58,20 @@ class ReviewDeckViewController: UIViewController {
     cardView.frame = CGRect(x: 40, y: 100, width: screenSize.width - 80, height: screenSize.height - 220)
     cardView.mainLabel.text = card.questionText
     cardView.secondaryLabel.text = card.questionNotes
+    cardView.frontLabel = card.questionText
+    cardView.frontNotes = card.questionNotes
+    cardView.rearLabel = card.answerText
+    cardView.rearNotes = card.answerNotes
     cardView.layer.shadowColor = UIColor.black.cgColor
     cardView.layer.shadowOpacity = 0.11
     cardView.layer.shadowOffset = CGSize(width: 0, height: 3)
     cardView.layer.shadowRadius = 14
-    cardView.delegate = self
+    cardView.swipeDelegate = self
+    cardView.tapDelegate = self
     cardView.isUserInteractionEnabled = false
     cardView.addGestureRecognizer(cardView.panGestureRecognizer)
+    cardView.addGestureRecognizer(cardView.tapGestureRecognizer)
+    
     
     return cardView
   }
@@ -82,10 +89,11 @@ class ReviewDeckViewController: UIViewController {
     if (currentIndex + swipeableCards.count) < allSwipeableCards.count {
       let card = allSwipeableCards[currentIndex + swipeableCards.count]
       var frame = card.frame
-      frame.origin.y = CGFloat(MAX_BUFFER_SIZE * SEPARATOR_DISTANCE)
+      card.layer.opacity = 0
+      frame.origin.y = 100
       card.frame = frame
       swipeableCards.append(card)
-      view.insertSubview(swipeableCards[MAX_BUFFER_SIZE - 1], belowSubview: swipeableCards[MAX_BUFFER_SIZE - 2])
+      view.insertSubview(swipeableCards[MAX_BUFFER_SIZE - 1], belowSubview: swipeableCards[MAX_BUFFER_SIZE - 1])
     }
     animateCardAfterSwiping()
   }
@@ -96,9 +104,7 @@ class ReviewDeckViewController: UIViewController {
         if i == 0 {
           card.isUserInteractionEnabled = true
         }
-        var frame = card.frame
-        frame.origin.y = 100 + (CGFloat(i * SEPARATOR_DISTANCE))
-        card.frame = frame
+        card.layer.opacity = 100
       })
     }
   }
@@ -126,6 +132,13 @@ extension ReviewDeckViewController: SwipeableCardDelegate {
   
   func currentCardStatus(card: SwipeableCard, distance: CGFloat) {
     
+  }
+  
+}
+
+extension ReviewDeckViewController: TappableCardDelegate {
+  func cardTapped(card: SwipeableCard) {
+    print("Tapped")
   }
   
   

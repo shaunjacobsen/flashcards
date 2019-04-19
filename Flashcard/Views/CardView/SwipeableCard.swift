@@ -9,6 +9,7 @@
 import UIKit
 
 let THRESHOLD_MARGIN = (UIScreen.main.bounds.size.width / 2) * 0.5
+let VERTICAL_THRESHOLD_MARGIN = (UIScreen.main.bounds.size.height / 2) * 0.5
 let SCALE_STRENGTH: CGFloat = 4
 let SCALE_RANGE: CGFloat = 0.90
 
@@ -20,16 +21,28 @@ protocol SwipeableCardDelegate: NSObjectProtocol {
   func currentCardStatus(card: SwipeableCard, distance: CGFloat)
 }
 
+protocol TappableCardDelegate: NSObjectProtocol {
+  func cardTapped(card: SwipeableCard)
+}
+
 class SwipeableCard: UIView {
   
+  var frontLabel: String?
+  var frontNotes: String?
+  var rearLabel: String?
+  var rearNotes: String?
+  var isReversedCardShowing = false
   var xCenter: CGFloat = 0.0
   var yCenter: CGFloat = 0.0
   var originalPoint = CGPoint.zero
-  lazy var generator = UIImpactFeedbackGenerator(style: .light)
+  var didGenerateFeedback = false
+  lazy var generator = UIImpactFeedbackGenerator(style: .medium)
   
   lazy var panGestureRecognizer = UIPanGestureRecognizer(target: self, action: #selector(self.handleDragging))
+  lazy var tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(cardViewTapped))
   
-  weak var delegate: SwipeableCardDelegate?
+  weak var swipeDelegate: SwipeableCardDelegate?
+  weak var tapDelegate: TappableCardDelegate?
   
   @IBOutlet weak var mainLabel: UILabel!
   @IBOutlet weak var secondaryLabel: UILabel!
@@ -46,6 +59,34 @@ class SwipeableCard: UIView {
   
   override func awakeFromNib() {
     super.awakeFromNib()
+    
+    if let frontText = frontLabel {
+      mainLabel.text = frontText
+      secondaryLabel.text = frontNotes ?? ""
+    }
+  }
+  
+  @objc func cardViewTapped() {
+    tapDelegate?.cardTapped(card: self)
+    
+    UIView.transition(with: self, duration: 0.4, options: .transitionFlipFromLeft, animations: {
+      UIView.animate(withDuration: 0.4, animations: {
+        if self.isReversedCardShowing {
+          if let frontText = self.frontLabel {
+            self.mainLabel.text = frontText
+            self.secondaryLabel.text = self.frontNotes ?? ""
+          }
+        } else {
+          if let rearText = self.rearLabel {
+            self.mainLabel.text = rearText
+            self.secondaryLabel.text = self.rearNotes ?? ""
+          }
+        }
+        
+      })
+    }, completion: { _ in
+    })
+    isReversedCardShowing = true
   }
   
   @objc func handleDragging(_ gestureRecognizer: UIPanGestureRecognizer) {
@@ -57,16 +98,16 @@ class SwipeableCard: UIView {
       break;
     case .changed:
       let rotationStrength = min(xCenter / UIScreen.main.bounds.size.width, 1)
-      let rotationAngel = .pi/8 * rotationStrength
+      let rotationAngle = .pi/12 * rotationStrength
       let scale = max(1 - abs(rotationStrength) / SCALE_STRENGTH, SCALE_RANGE)
       center = CGPoint(x: originalPoint.x + xCenter, y: originalPoint.y + yCenter)
-//      print("xCenter: \(xCenter)")
-//      print("THRESHOLD_MARGIN: \(THRESHOLD_MARGIN)")
-//
-//      if Int(xCenter) == Int(THRESHOLD_MARGIN) || Int(xCenter) == Int(-THRESHOLD_MARGIN) {
-//        generator.impactOccurred()
-//      }
-      let transforms = CGAffineTransform(rotationAngle: rotationAngel)
+      if !didGenerateFeedback && (xCenter > THRESHOLD_MARGIN || xCenter < -THRESHOLD_MARGIN || yCenter < -VERTICAL_THRESHOLD_MARGIN) {
+        generator.impactOccurred()
+        didGenerateFeedback = true
+      } else if xCenter < 50 && xCenter > -50 && yCenter > -50 {
+        didGenerateFeedback = false
+      }
+      let transforms = CGAffineTransform(rotationAngle: rotationAngle)
       let scaleTransform: CGAffineTransform = transforms.scaledBy(x: scale, y: scale)
       self.transform = scaleTransform
       break;
@@ -83,17 +124,16 @@ class SwipeableCard: UIView {
   
   func afterSwipeAction() {
     if xCenter > THRESHOLD_MARGIN {
-      cardWentLeft()
-    }
-    else if xCenter < -THRESHOLD_MARGIN {
       cardWentRight()
-    } else if yCenter < (UIScreen.main.bounds.size.height / 2) * 0.5 {
+    } else if xCenter < -THRESHOLD_MARGIN {
+      cardWentLeft()
+    } else if yCenter < -VERTICAL_THRESHOLD_MARGIN {
       cardWentUp()
     } else {
       UIView.animate(withDuration: 0.3, delay: 0.0, usingSpringWithDamping: 0.5, initialSpringVelocity: 1.0, options: [], animations: {
         self.center = self.originalPoint
         self.transform = CGAffineTransform(rotationAngle: 0)
-        self.delegate?.currentCardStatus(card: self, distance: 0)
+        self.swipeDelegate?.currentCardStatus(card: self, distance: 0)
       })
     }
   }
@@ -106,8 +146,8 @@ class SwipeableCard: UIView {
       self.removeFromSuperview()
     })
     // handle card actions here
-    delegate?.cardMovement(card: self)
-    delegate?.cardWentLeft(card: self)
+    swipeDelegate?.cardWentLeft(card: self)
+    swipeDelegate?.cardMovement(card: self)
   }
   
   func cardWentRight() {
@@ -118,20 +158,20 @@ class SwipeableCard: UIView {
       self.removeFromSuperview()
     })
     // handle card actions here
-    delegate?.cardMovement(card: self)
-    delegate?.cardWentRight(card: self)
+    swipeDelegate?.cardWentRight(card: self)
+    swipeDelegate?.cardMovement(card: self)
   }
   
   func cardWentUp() {
-    let finishPoint = CGPoint(x: xCenter, y: -frame.size.height * 2)
+    let finishPoint = CGPoint(x: 0, y: 1000)
     UIView.animate(withDuration: 0.5, animations: {
       self.center = finishPoint
     }, completion: {(_) in
       self.removeFromSuperview()
     })
     // handle card actions here
-    delegate?.cardMovement(card: self)
-    delegate?.cardWentUp(card: self)
+    swipeDelegate?.cardWentUp(card: self)
+    swipeDelegate?.cardMovement(card: self)
   }
 
 }
