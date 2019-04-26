@@ -32,6 +32,8 @@
 		568118372266B457007EB308 /* SwipeableCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 568118362266B457007EB308 /* SwipeableCard.swift */; };
 		568118392266B47A007EB308 /* SwipeableCard.xib in Resources */ = {isa = PBXBuildFile; fileRef = 568118382266B47A007EB308 /* SwipeableCard.xib */; };
 		5681183E2266B74E007EB308 /* UIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5681183D2266B74E007EB308 /* UIView.swift */; };
+		56AD40402273AFDA002FC19D /* SpacedRepetitionCalculator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56AD403F2273AFDA002FC19D /* SpacedRepetitionCalculator.swift */; };
+		56AD40422273B453002FC19D /* CardPerformance.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56AD40412273B453002FC19D /* CardPerformance.swift */; };
 		5F47F2B1CA7D6ED2CD121C24 /* Pods_Flashcard.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C1A8557DAA49A9E315E1C36C /* Pods_Flashcard.framework */; };
 /* End PBXBuildFile section */
 
@@ -63,6 +65,8 @@
 		568118362266B457007EB308 /* SwipeableCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwipeableCard.swift; sourceTree = "<group>"; };
 		568118382266B47A007EB308 /* SwipeableCard.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SwipeableCard.xib; sourceTree = "<group>"; };
 		5681183D2266B74E007EB308 /* UIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIView.swift; sourceTree = "<group>"; };
+		56AD403F2273AFDA002FC19D /* SpacedRepetitionCalculator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpacedRepetitionCalculator.swift; sourceTree = "<group>"; };
+		56AD40412273B453002FC19D /* CardPerformance.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardPerformance.swift; sourceTree = "<group>"; };
 		8D8C8EEFC5CA23A340841FC2 /* Pods-Flashcard.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Flashcard.release.xcconfig"; path = "Pods/Target Support Files/Pods-Flashcard/Pods-Flashcard.release.xcconfig"; sourceTree = "<group>"; };
 		A2E6EC05AB9E6614DCCE1DB8 /* Pods-Flashcard.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Flashcard.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Flashcard/Pods-Flashcard.debug.xcconfig"; sourceTree = "<group>"; };
 		C1A8557DAA49A9E315E1C36C /* Pods_Flashcard.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Flashcard.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -128,6 +132,8 @@
 				561684A1225008320083BA11 /* Deck.swift */,
 				561684A3225009010083BA11 /* Card.swift */,
 				561684A522500A0D0083BA11 /* CardPerformanceHistory.swift */,
+				56AD403F2273AFDA002FC19D /* SpacedRepetitionCalculator.swift */,
+				56AD40412273B453002FC19D /* CardPerformance.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -347,9 +353,11 @@
 				568118342266B3CB007EB308 /* ReviewDeckViewController.swift in Sources */,
 				561684A2225008320083BA11 /* Deck.swift in Sources */,
 				561684BA22501E130083BA11 /* DeckViewController.swift in Sources */,
+				56AD40402273AFDA002FC19D /* SpacedRepetitionCalculator.swift in Sources */,
 				5616848F224FF18C0083BA11 /* DecksViewController.swift in Sources */,
 				561684C3225188F00083BA11 /* AddCardViewController.swift in Sources */,
 				561684A622500A0D0083BA11 /* CardPerformanceHistory.swift in Sources */,
+				56AD40422273B453002FC19D /* CardPerformance.swift in Sources */,
 				568118372266B457007EB308 /* SwipeableCard.swift in Sources */,
 				561684BC225022630083BA11 /* AddDeckViewController.swift in Sources */,
 				5616848D224FF18C0083BA11 /* AppDelegate.swift in Sources */,

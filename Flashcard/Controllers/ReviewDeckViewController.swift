@@ -7,12 +7,15 @@
 //
 
 import UIKit
+import RealmSwift
 
 let screenSize = UIScreen.main.bounds
 let SEPARATOR_DISTANCE = 8
 let MAX_BUFFER_SIZE = 1
 
 class ReviewDeckViewController: UIViewController {
+  
+  let realm = try! Realm()
   
   var selectedDeck: Deck?
   var allSwipeableCards: [SwipeableCard] = []
@@ -80,6 +83,7 @@ class ReviewDeckViewController: UIViewController {
   
   func createCard(from card: Card) -> SwipeableCard {
     let cardView = SwipeableCard()
+    cardView.card = card
     cardView.frame = CGRect(x: 40, y: 120, width: screenSize.width - 80, height: screenSize.height - 220)
     cardView.backgroundColor = UIColor.white
     cardView.mainLabel.text = card.questionText
@@ -146,35 +150,51 @@ class ReviewDeckViewController: UIViewController {
       self.progressBarColoredTrailingConstraint.constant = spaceToOccupy
       
       self.view.layoutIfNeeded()
-      
-
-            
     }
   }
 
 }
 
 extension ReviewDeckViewController: SwipeableCardDelegate {
-  func cardMovement(card: SwipeableCard) {
+  func cardMovement(card: Card) {
     animateCardAfterSwiping()
     removeCardAndAppendNew()
     dismissIfNoFurtherCards()
   }
   
-  func cardWentLeft(card: SwipeableCard) {
-    print("Card went left")
+  func cardWentLeft(card: Card) {
+    let calculator = SpacedRepetitionCalculator()
+    let next = calculator.calculateNextReview(assessment: .hard, card: card)
+    debugPrint(next.nextReview, next.progress)
+    savePerformance(card: card, cardPerformance: next)
   }
   
-  func cardWentRight(card: SwipeableCard) {
-    print("Card went right")
+  func cardWentRight(card: Card) {
+    let calculator = SpacedRepetitionCalculator()
+    let next = calculator.calculateNextReview(assessment: .easy, card: card)
+    debugPrint(next.nextReview, next.progress)
+    savePerformance(card: card, cardPerformance: next)
   }
   
-  func cardWentUp(card: SwipeableCard) {
-    print("Card went up and away")
+  func cardWentUp(card: Card) {
+    let calculator = SpacedRepetitionCalculator()
+    let next = calculator.calculateNextReview(assessment: .fair, card: card)
+    debugPrint(next.nextReview, next.progress)
+    savePerformance(card: card, cardPerformance: next)
   }
   
-  func currentCardStatus(card: SwipeableCard, distance: CGFloat) {
+  func currentCardStatus(card: Card, distance: CGFloat) {
     
+  }
+  
+  func savePerformance(card: Card, cardPerformance: CardPerformance) {
+    do {
+      try self.realm.write {
+        card.progress = cardPerformance.progress
+      }
+    } catch {
+      print("Error saving to Realm: \(error)")
+    }
   }
   
 }

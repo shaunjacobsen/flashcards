@@ -14,11 +14,11 @@ let SCALE_STRENGTH: CGFloat = 4
 let SCALE_RANGE: CGFloat = 0.90
 
 protocol SwipeableCardDelegate: NSObjectProtocol {
-  func cardMovement(card: SwipeableCard)
-  func cardWentLeft(card: SwipeableCard)
-  func cardWentRight(card: SwipeableCard)
-  func cardWentUp(card: SwipeableCard)
-  func currentCardStatus(card: SwipeableCard, distance: CGFloat)
+  func cardMovement(card: Card)
+  func cardWentLeft(card: Card)
+  func cardWentRight(card: Card)
+  func cardWentUp(card: Card)
+  func currentCardStatus(card: Card, distance: CGFloat)
 }
 
 @objc protocol TappableCardDelegate: NSObjectProtocol {
@@ -28,6 +28,7 @@ protocol SwipeableCardDelegate: NSObjectProtocol {
 
 class SwipeableCard: UIView {
   
+  var card: Card?
   var frontLabel: String?
   var frontNotes: String?
   var rearLabel: String?
@@ -169,7 +170,7 @@ class SwipeableCard: UIView {
       UIView.animate(withDuration: 0.3, delay: 0.0, usingSpringWithDamping: 0.5, initialSpringVelocity: 1.0, options: [], animations: {
         self.center = self.originalPoint
         self.transform = CGAffineTransform(rotationAngle: 0)
-        self.swipeDelegate?.currentCardStatus(card: self, distance: 0)
+        self.swipeDelegate?.currentCardStatus(card: self.card!, distance: 0)
       })
     }
   }
@@ -182,8 +183,8 @@ class SwipeableCard: UIView {
       self.removeFromSuperview()
     })
     // handle card actions here
-    swipeDelegate?.cardWentLeft(card: self)
-    swipeDelegate?.cardMovement(card: self)
+    swipeDelegate?.cardWentLeft(card: self.card!)
+    swipeDelegate?.cardMovement(card: self.card!)
   }
   
   private func cardWentRight() {
@@ -194,8 +195,8 @@ class SwipeableCard: UIView {
       self.removeFromSuperview()
     })
     // handle card actions here
-    swipeDelegate?.cardWentRight(card: self)
-    swipeDelegate?.cardMovement(card: self)
+    swipeDelegate?.cardWentRight(card: self.card!)
+    swipeDelegate?.cardMovement(card: self.card!)
   }
   
   private func cardWentUp() {
@@ -206,8 +207,8 @@ class SwipeableCard: UIView {
       self.removeFromSuperview()
     })
     // handle card actions here
-    swipeDelegate?.cardWentUp(card: self)
-    swipeDelegate?.cardMovement(card: self)
+    swipeDelegate?.cardWentUp(card: self.card!)
+    swipeDelegate?.cardMovement(card: self.card!)
   }
 
 }
