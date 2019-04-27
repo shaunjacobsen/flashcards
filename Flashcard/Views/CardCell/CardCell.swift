@@ -19,8 +19,8 @@ class CardCell: UITableViewCell {
     cardCell.layer.cornerRadius = 6
     cardCell.layer.shadowColor = UIColor.black.cgColor
     cardCell.layer.shadowOpacity = 0.08
-    cardCell.layer.shadowOffset = CGSize(width: 0, height: 1)
-    cardCell.layer.shadowRadius = 8
+    cardCell.layer.shadowOffset = CGSize(width: 0, height: 4)
+    cardCell.layer.shadowRadius = 4
   }
   
   override func setSelected(_ selected: Bool, animated: Bool) {

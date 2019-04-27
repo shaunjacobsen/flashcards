@@ -17,12 +17,12 @@ class DeckCell: UITableViewCell {
     super.awakeFromNib()
     
     deckCell.layer.cornerRadius = 6
-    deckCell.layer.shadowPath = UIBezierPath(roundedRect: deckCell.bounds, cornerRadius: deckCell.layer.cornerRadius).cgPath
+//    deckCell.layer.shadowPath = UIBezierPath(roundedRect: deckCell.bounds, cornerRadius: deckCell.layer.cornerRadius).cgPath
     
     deckCell.layer.shadowColor = UIColor.black.cgColor
-    deckCell.layer.shadowOpacity = 0.11
+    deckCell.layer.shadowOpacity = 0.08
     deckCell.layer.shadowOffset = CGSize(width: 0, height: 3)
-    deckCell.layer.shadowRadius = 8
+    deckCell.layer.shadowRadius = 4
   }
 
   override func setSelected(_ selected: Bool, animated: Bool) {

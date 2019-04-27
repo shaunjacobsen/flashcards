@@ -16,11 +16,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
   func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-
+    print(Realm.Configuration.defaultConfiguration.fileURL)
+    
     do {
-      var config = Realm.Configuration()
-      config.deleteRealmIfMigrationNeeded = true
-      let _ = try Realm(configuration: config)
+      let _ = try Realm()
     } catch {
       print("Realm error: \(error)")
     }

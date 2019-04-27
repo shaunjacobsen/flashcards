@@ -12,12 +12,16 @@ import RealmSwift
 class DeckViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
   
   var cards: Results<Card>?
+  var cardsForReview: [Card]?
   
   //
   // MARK: - IBOutlets
   //
   
   @IBOutlet weak var startReviewButton: UIButton!
+  @IBOutlet weak var labelsStackView: UIStackView!
+  @IBOutlet weak var startReviewLabel: UILabel!
+  @IBOutlet weak var startReviewAuxLabel: UILabel!
   @IBOutlet weak var cardTable: UITableView!
   
   @IBAction func handleTouchNewCardButton(_ sender: UIButton) {
@@ -35,6 +39,7 @@ class DeckViewController: UIViewController, UITableViewDelegate, UITableViewData
   }
 
   override func viewDidLoad() {
+    
     super.viewDidLoad()
     
     cardTable.register(UINib(nibName: "CardCell", bundle: nil), forCellReuseIdentifier: "CardCell")
@@ -43,7 +48,6 @@ class DeckViewController: UIViewController, UITableViewDelegate, UITableViewData
     cardTable.estimatedRowHeight = 50
 
     startReviewButton.layer.cornerRadius = 6
-    startReviewButton.layer.shadowPath = UIBezierPath(roundedRect: startReviewButton.bounds, cornerRadius: startReviewButton.layer.cornerRadius).cgPath
     startReviewButton.layer.shadowColor = UIColor.black.cgColor
     startReviewButton.layer.shadowOpacity = 0.11
     startReviewButton.layer.shadowOffset = CGSize(width: 0, height: 3)
@@ -51,9 +55,28 @@ class DeckViewController: UIViewController, UITableViewDelegate, UITableViewData
   }
   
   override func viewWillAppear(_ animated: Bool) {
-    if let deckName = selectedDeck?.name {
-      self.navigationController?.title = deckName
-      self.navigationItem.title = deckName
+    
+    if let deck = selectedDeck {
+      self.navigationController?.title = deck.name
+      self.navigationItem.title = deck.name
+      
+      labelsStackView.isUserInteractionEnabled = false
+      
+      let timestamp = Date()
+      cardsForReview = Array(deck.cards).filter { $0.nextReview < timestamp }
+      
+      if cardsForReview!.count > 0 {
+        startReviewButton.isEnabled = true
+        startReviewLabel.text = String(describing: cardsForReview!.count)
+      } else {
+        startReviewButton.isEnabled = false
+        startReviewLabel.font = UIFont.init(name: "Helvetica", size: 36.0)
+        startReviewLabel.text = "🏅"
+        startReviewAuxLabel.font = UIFont.init(name: "HK Grotesk", size: 28.0)
+        startReviewAuxLabel.adjustsFontSizeToFitWidth = true
+        startReviewAuxLabel.text = "You're all caught up!"
+      }
+      
     }
     
     if selectedDeck !== nil {
@@ -84,7 +107,7 @@ class DeckViewController: UIViewController, UITableViewDelegate, UITableViewData
   //
   
   func loadItems() {
-    cards = selectedDeck?.cards.sorted(byKeyPath: "nextAppearanceOn", ascending: true)
+    cards = selectedDeck?.cards.sorted(byKeyPath: "nextReview", ascending: true)
     
   }
   
@@ -96,14 +119,15 @@ class DeckViewController: UIViewController, UITableViewDelegate, UITableViewData
     if segue.identifier == "goToAddNewCardSegue" {
       let destinationVC = segue.destination as! AddCardViewController
       if let deck = selectedDeck {
-        destinationVC.selectedDeck = selectedDeck
+        destinationVC.selectedDeck = deck
       }
     }
     
     if segue.identifier == "goToReviewDeckSegue" {
       let destinationVC = segue.destination as! ReviewDeckViewController
       if let deck = selectedDeck {
-        destinationVC.selectedDeck = selectedDeck
+        destinationVC.selectedDeck = deck
+        destinationVC.cardsForReview = cardsForReview
       }
     }
   }

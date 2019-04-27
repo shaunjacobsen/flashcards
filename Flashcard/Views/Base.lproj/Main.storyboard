@@ -10,6 +10,12 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
+        <array key="HKGrotesk-Bold.otf">
+            <string>HKGrotesk-Bold</string>
+        </array>
+        <array key="HKGrotesk-Medium.otf">
+            <string>HKGrotesk-Medium</string>
+        </array>
         <array key="HKGrotesk-Regular.otf">
             <string>HKGrotesk-Regular</string>
         </array>
@@ -84,20 +90,33 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zx9-26-8Kw">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zx9-26-8Kw">
                                 <rect key="frame" x="20" y="160" width="374" height="80"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="80" id="LGx-uO-ftu"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" name="HKGrotesk-SemiBold" family="HK Grotesk" pointSize="30"/>
-                                <state key="normal" title="Start Review">
-                                    <color key="titleColor" red="0.2901960784" green="0.2901960784" blue="0.2901960784" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                </state>
                                 <connections>
                                     <action selector="handleTouchReviewDeckButton:" destination="aX0-MM-RKM" eventType="touchUpInside" id="yUw-G3-fiK"/>
                                 </connections>
                             </button>
+                            <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="JRE-EF-i21">
+                                <rect key="frame" x="40" y="180" width="334" height="40"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="252" verticalHuggingPriority="251" text="0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="M0F-my-QMJ">
+                                        <rect key="frame" x="0.0" y="0.0" width="28" height="40"/>
+                                        <fontDescription key="fontDescription" name="HKGrotesk-Bold" family="HK Grotesk" pointSize="48"/>
+                                        <color key="textColor" red="0.72156862745098038" green="0.9137254901960784" blue="0.52549019607843139" alpha="0.84705882352941175" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="cards to review" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zwd-ev-pgR">
+                                        <rect key="frame" x="38" y="7.5" width="296" height="25.5"/>
+                                        <fontDescription key="fontDescription" name="HKGrotesk-Medium" family="HK Grotesk" pointSize="21"/>
+                                        <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                            </stackView>
                             <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" alignment="bottom" translatesAutoresizingMaskIntoConstraints="NO" id="c4a-Di-AA7">
                                 <rect key="frame" x="20" y="280" width="374" height="40"/>
                                 <subviews>
@@ -143,27 +162,34 @@
                         <constraints>
                             <constraint firstItem="cGO-4x-pQr" firstAttribute="trailing" secondItem="c4a-Di-AA7" secondAttribute="trailing" constant="20" id="9zw-ZS-dgf"/>
                             <constraint firstItem="cGO-4x-pQr" firstAttribute="trailing" secondItem="zCc-Nn-hMb" secondAttribute="trailing" id="A8C-Q9-6ck"/>
+                            <constraint firstItem="JRE-EF-i21" firstAttribute="leading" secondItem="zx9-26-8Kw" secondAttribute="leading" constant="20" id="BsI-G0-LaG"/>
                             <constraint firstItem="cGO-4x-pQr" firstAttribute="trailing" secondItem="zx9-26-8Kw" secondAttribute="trailing" constant="20" id="G45-bE-fGc"/>
                             <constraint firstItem="zx9-26-8Kw" firstAttribute="leading" secondItem="cGO-4x-pQr" secondAttribute="leading" constant="20" id="ISb-NY-srX"/>
+                            <constraint firstItem="zx9-26-8Kw" firstAttribute="trailing" secondItem="JRE-EF-i21" secondAttribute="trailing" constant="20" id="MDt-kH-6wT"/>
+                            <constraint firstItem="JRE-EF-i21" firstAttribute="top" secondItem="zx9-26-8Kw" secondAttribute="top" constant="20" id="V5u-p3-MDd"/>
                             <constraint firstItem="zCc-Nn-hMb" firstAttribute="leading" secondItem="cGO-4x-pQr" secondAttribute="leading" id="fKa-3K-uEF"/>
                             <constraint firstItem="c4a-Di-AA7" firstAttribute="top" secondItem="zx9-26-8Kw" secondAttribute="bottom" constant="40" id="gbz-Fh-LvR"/>
                             <constraint firstItem="zx9-26-8Kw" firstAttribute="top" secondItem="cGO-4x-pQr" secondAttribute="top" constant="20" id="ihE-Up-hr3"/>
                             <constraint firstItem="cGO-4x-pQr" firstAttribute="bottom" secondItem="zCc-Nn-hMb" secondAttribute="bottom" constant="20" id="mjJ-Vt-Hq4"/>
                             <constraint firstItem="c4a-Di-AA7" firstAttribute="leading" secondItem="cGO-4x-pQr" secondAttribute="leading" constant="20" id="osa-D2-MXc"/>
+                            <constraint firstItem="zx9-26-8Kw" firstAttribute="bottom" secondItem="JRE-EF-i21" secondAttribute="bottom" constant="20" id="rU3-FZ-dVc"/>
                             <constraint firstItem="zCc-Nn-hMb" firstAttribute="top" secondItem="c4a-Di-AA7" secondAttribute="bottom" constant="10" id="zWC-ux-FGc"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="cGO-4x-pQr"/>
                     </view>
                     <connections>
                         <outlet property="cardTable" destination="zCc-Nn-hMb" id="San-34-9SX"/>
+                        <outlet property="labelsStackView" destination="JRE-EF-i21" id="B9D-WQ-Unn"/>
+                        <outlet property="startReviewAuxLabel" destination="zwd-ev-pgR" id="CP9-sD-mNv"/>
                         <outlet property="startReviewButton" destination="zx9-26-8Kw" id="pW3-rC-pBn"/>
+                        <outlet property="startReviewLabel" destination="M0F-my-QMJ" id="q3y-Sv-l4I"/>
                         <segue destination="el4-hV-8jh" kind="showDetail" identifier="goToAddNewCardSegue" id="NNP-Dz-MUL"/>
                         <segue destination="9Ea-sX-UZb" kind="showDetail" identifier="goToReviewDeckSegue" id="EHL-9f-LrE"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="76E-cL-nbz" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4014" y="159"/>
+            <point key="canvasLocation" x="4013.04347826087" y="158.70535714285714"/>
         </scene>
         <!--Review Deck View Controller-->
         <scene sceneID="kd4-4S-XS4">

@@ -18,6 +18,7 @@ class ReviewDeckViewController: UIViewController {
   let realm = try! Realm()
   
   var selectedDeck: Deck?
+  var cardsForReview: [Card]?
   var allSwipeableCards: [SwipeableCard] = []
   var swipeableCards: [SwipeableCard] = []
   var currentIndex = 0
@@ -41,9 +42,9 @@ class ReviewDeckViewController: UIViewController {
   override func viewWillAppear(_ animated: Bool) {
     super.viewWillAppear(animated)
     
-    if let deck = selectedDeck {
-      let capCount = (deck.cards.count > MAX_BUFFER_SIZE) ? MAX_BUFFER_SIZE : deck.cards.count
-      for (i, card) in deck.cards.enumerated() {
+    if let cards = cardsForReview {
+      let capCount = (cards.count > MAX_BUFFER_SIZE) ? MAX_BUFFER_SIZE : cards.count
+      for (i, card) in cards.enumerated() {
         let newCard = createCard(from: card)
         allSwipeableCards.append(newCard)
         if i < capCount {
@@ -191,6 +192,8 @@ extension ReviewDeckViewController: SwipeableCardDelegate {
     do {
       try self.realm.write {
         card.progress = cardPerformance.progress
+        card.nextReview = cardPerformance.nextReview
+        card.lastReview = cardPerformance.timestamp
       }
     } catch {
       print("Error saving to Realm: \(error)")

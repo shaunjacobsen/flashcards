@@ -16,7 +16,7 @@ enum ProgressAssessment {
 
 class SpacedRepetitionCalculator {
   
-  let INTERVALS = [1, 2, 3, 8, 17]
+  let INTERVALS = [1, 2, 3, 8, 16, 32, 64]
   
   private func maxProgress() -> Int {
     return self.INTERVALS.count
@@ -36,11 +36,11 @@ class SpacedRepetitionCalculator {
   func calculateNextReview(assessment: ProgressAssessment, card: Card) -> CardPerformance {
     let score = getScore(assessment)
     let timestamp = Date()
-    let correct = score == self.INTERVALS.count - 1
+    let correct = score == 1
     let newProgressScore = card.progress + score
     var nextDueDate = timestamp.addingTimeInterval(86400)
     if correct && card.progress < self.maxProgress() {
-      nextDueDate = timestamp + TimeInterval(self.INTERVALS[card.progress])
+      nextDueDate = timestamp + TimeInterval(86400 * self.INTERVALS[card.progress])
     }
     
     return CardPerformance.init(progress: newProgressScore < 0 ? 0 : newProgressScore, nextReview: nextDueDate)

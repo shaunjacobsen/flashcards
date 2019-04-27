@@ -16,9 +16,10 @@ class Card: Object {
   @objc dynamic var answerNotes: String?
   @objc dynamic var inverseOf: Card?
   @objc dynamic var lastAnswerMood: String?
-  @objc dynamic var lastAnsweredOn: Date?
-  @objc dynamic var nextAppearanceOn: Date?
+  @objc dynamic var lastReview: Date?
+  @objc dynamic var nextReview: Date = Date()
   @objc dynamic var progress: Int = 0
+  @objc dynamic var algorithmVersion: Int = 1
   var history = List<CardPerformanceHistory>()
   var deck = LinkingObjects(fromType: Deck.self, property: "cards")
     
