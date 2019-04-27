@@ -325,11 +325,11 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="tZj-fz-Hpb">
-                                <rect key="frame" x="40" y="64" width="334" height="30"/>
+                                <rect key="frame" x="40" y="64" width="334" height="22"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cd3-Np-moP">
-                                        <rect key="frame" x="0.0" y="0.0" width="334" height="30"/>
-                                        <state key="normal" title="Cancel"/>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cd3-Np-moP">
+                                        <rect key="frame" x="0.0" y="0.0" width="334" height="22"/>
+                                        <state key="normal" image="close-icon"/>
                                         <connections>
                                             <action selector="handleTouchCancelButton:" destination="el4-hV-8jh" eventType="touchUpInside" id="QYj-ac-wjB"/>
                                         </connections>
@@ -337,10 +337,10 @@
                                 </subviews>
                             </stackView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Dq2-Gy-DnJ">
-                                <rect key="frame" x="40" y="114" width="334" height="708"/>
+                                <rect key="frame" x="40" y="106" width="334" height="696"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="G0k-hU-ieN">
-                                        <rect key="frame" x="20" y="264" width="294" height="180"/>
+                                        <rect key="frame" x="20" y="258" width="294" height="180"/>
                                         <subviews>
                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Rear of card..." textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="sBY-Na-1lc">
                                                 <rect key="frame" x="0.0" y="0.0" width="294" height="39"/>
@@ -376,7 +376,7 @@
                                         </constraints>
                                     </stackView>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="Xn2-ot-DLV">
-                                        <rect key="frame" x="20" y="264" width="294" height="180"/>
+                                        <rect key="frame" x="20" y="258" width="294" height="180"/>
                                         <subviews>
                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Front of card..." textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="fy8-N2-0I3">
                                                 <rect key="frame" x="0.0" y="0.0" width="294" height="39"/>
@@ -425,7 +425,7 @@
                                 </constraints>
                             </view>
                             <stackView opaque="NO" contentMode="scaleToFill" spacing="1" translatesAutoresizingMaskIntoConstraints="NO" id="jPG-Fv-CDi">
-                                <rect key="frame" x="130.5" y="786" width="153" height="76"/>
+                                <rect key="frame" x="130.5" y="766" width="153" height="76"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="na7-cc-LJA">
                                         <rect key="frame" x="0.0" y="0.0" width="76" height="76"/>
@@ -458,8 +458,8 @@
                             <constraint firstItem="tZj-fz-Hpb" firstAttribute="top" secondItem="gnI-rn-YFB" secondAttribute="top" constant="20" id="Ebs-zH-McK"/>
                             <constraint firstItem="Dq2-Gy-DnJ" firstAttribute="leading" secondItem="gnI-rn-YFB" secondAttribute="leading" constant="40" id="HjC-47-IpQ"/>
                             <constraint firstItem="tZj-fz-Hpb" firstAttribute="leading" secondItem="gnI-rn-YFB" secondAttribute="leading" constant="40" id="PIZ-ax-RKg"/>
-                            <constraint firstItem="gnI-rn-YFB" firstAttribute="bottom" secondItem="jPG-Fv-CDi" secondAttribute="bottom" id="XJw-Pu-fVd"/>
-                            <constraint firstItem="gnI-rn-YFB" firstAttribute="bottom" secondItem="Dq2-Gy-DnJ" secondAttribute="bottom" constant="40" id="h7N-yV-AOZ"/>
+                            <constraint firstItem="gnI-rn-YFB" firstAttribute="bottom" secondItem="jPG-Fv-CDi" secondAttribute="bottom" constant="20" id="XJw-Pu-fVd"/>
+                            <constraint firstItem="gnI-rn-YFB" firstAttribute="bottom" secondItem="Dq2-Gy-DnJ" secondAttribute="bottom" constant="60" id="h7N-yV-AOZ"/>
                             <constraint firstItem="gnI-rn-YFB" firstAttribute="trailing" secondItem="Dq2-Gy-DnJ" secondAttribute="trailing" constant="40" id="iAK-cs-sWN"/>
                             <constraint firstItem="jPG-Fv-CDi" firstAttribute="centerX" secondItem="WPB-Q9-6Jl" secondAttribute="centerX" id="keG-Jm-P0g"/>
                             <constraint firstItem="gnI-rn-YFB" firstAttribute="trailing" secondItem="tZj-fz-Hpb" secondAttribute="trailing" constant="40" id="lRd-Sk-Qtl"/>

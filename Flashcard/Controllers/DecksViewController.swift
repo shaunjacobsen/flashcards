@@ -30,7 +30,7 @@ class DecksViewController: UIViewController, UITableViewDelegate, UITableViewDat
     navigationController?.navigationBar.setBackgroundImage(UIImage(), for: UIBarMetrics.default)
     navigationController?.navigationBar.shadowImage = UIImage()
     
-    var fontDescriptor = UIFontDescriptor(name: "HK Grotesk", size: 34)
+    var fontDescriptor = UIFontDescriptor(name: "HKGrotesk-Bold", size: 34)
     
     let navigationAttributes: [NSAttributedString.Key : Any] = [NSAttributedString.Key.font: UIFont(descriptor: fontDescriptor, size: 34), NSAttributedString.Key.foregroundColor: UIColor(red:0.29, green:0.29, blue:0.29, alpha:1.0)]
     self.navigationController?.navigationBar.largeTitleTextAttributes = navigationAttributes

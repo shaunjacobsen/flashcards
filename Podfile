@@ -7,4 +7,5 @@ target 'Flashcard' do
 
   # Pods for Flashcard
   pod 'RealmSwift'
+  pod 'SwiftDate'
 end
