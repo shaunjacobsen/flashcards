@@ -10,12 +10,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Flashcard/Controllers/AddCardViewController.swift"
-            timestampString = "578086237.576589"
+            timestampString = "578185915.096982"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "73"
-            endingLineNumber = "73"
-            landmarkName = "viewDidLoad()"
+            startingLineNumber = "77"
+            endingLineNumber = "77"
+            landmarkName = "handleTapAddImageButton(_:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

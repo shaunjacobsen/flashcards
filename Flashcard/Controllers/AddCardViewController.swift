@@ -23,6 +23,8 @@ class AddCardViewController: UIViewController, UITextFieldDelegate, UITextViewDe
   var isReversedCardShowing = false
   var isEditingCardText = false
   
+  var imagePicker: ImagePicker!
+  
   //
   // MARK: - IBOutlets
   //
@@ -32,6 +34,7 @@ class AddCardViewController: UIViewController, UITextFieldDelegate, UITextViewDe
   @IBOutlet weak var cardStackView: UIStackView!
   @IBOutlet weak var cardFrontTextField: UITextField!
   @IBOutlet weak var cardFrontNotesTextField: UITextView!
+  @IBOutlet weak var cardFrontImageView: UIImageView!
   @IBOutlet weak var cardFrontTextErrorLabel: UILabel!
   @IBOutlet weak var cardViewBottomDistanceConstraint: NSLayoutConstraint!
   @IBOutlet weak var swapCardButtonBottomDistanceConstraint: NSLayoutConstraint!
@@ -41,7 +44,11 @@ class AddCardViewController: UIViewController, UITextFieldDelegate, UITextViewDe
   @IBOutlet weak var reverseCardStackView: UIStackView!
   @IBOutlet weak var reverseCardTextField: UITextField!
   @IBOutlet weak var reverseCardNotesTextField: UITextView!
+  @IBOutlet weak var reverseCardImageView: UIImageView!
   @IBOutlet weak var reverseCardTextErrorLabel: UILabel!
+  
+  @IBOutlet weak var addImageButton: UIButton!
+  @IBOutlet weak var addSoundButton: UIButton!
   
   @IBAction func handleTouchCancelButton(_ sender: UIButton) {
     dismiss(animated: true, completion: nil)
@@ -62,15 +69,27 @@ class AddCardViewController: UIViewController, UITextFieldDelegate, UITextViewDe
       flipCard()
     } else {
     // else (both are not blank), add
-      createCard(frontText: cardFrontTextField.text!, frontNotes: cardFrontNotesTextField.text ?? "", rearText: reverseCardTextField.text!, rearNotes: reverseCardNotesTextField.text ?? "", deck: selectedDeck!)
+      createCard(frontText: cardFrontTextField.text!, frontNotes: cardFrontNotesTextField.text ?? "", rearText: reverseCardTextField.text!, rearNotes: reverseCardNotesTextField.text ?? "", image: nil, shouldSpeak: false, spokenDialect: nil, deck: selectedDeck!)
       self.dismiss(animated: true, completion: nil)
     }
   }
+  
+  @IBAction func handleTapAddImageButton(_ sender: UIButton) {
+    self.imagePicker.present(from: sender)
+  }
+  
+  @IBAction func handleTapAddSoundButton(_ sender: UIButton) {
+    // present a list at the bottom with all the dialects available
+    // at the top of this list should be the dialects that are present, if any, in the existing deck
+  }
+  
   
   let screenSize = UIScreen.main.bounds
   
   override func viewDidLoad() {
     super.viewDidLoad()
+    
+    self.imagePicker = ImagePicker(presentationController: self, delegate: self)
     
     let tapGesture = UITapGestureRecognizer(target: self, action: #selector(cardViewTapped))
     cardView.addGestureRecognizer(tapGesture)
@@ -139,10 +158,10 @@ class AddCardViewController: UIViewController, UITextFieldDelegate, UITextViewDe
   }
   
   //
-  // MARK: - Generate new card
+  // MARK: - Card operations
   //
   
-  func createCard(frontText: String, frontNotes: String, rearText: String, rearNotes: String, deck: Deck) {
+  func createCard(frontText: String, frontNotes: String, rearText: String, rearNotes: String, image: String?, shouldSpeak: Bool, spokenDialect: String?, deck: Deck) {
     do {
       try self.realm.write {
         if let deck = selectedDeck {
@@ -151,12 +170,29 @@ class AddCardViewController: UIViewController, UITextFieldDelegate, UITextViewDe
           newCard.questionNotes = frontNotes
           newCard.answerText = rearText
           newCard.answerNotes = rearNotes
+          newCard.image = image ?? ""
+          newCard.shouldSpeak = shouldSpeak
+          newCard.spokenDialect = spokenDialect ?? ""
           deck.cards.append(newCard)
         }
       }
     } catch {
       displayGenericAlert(title: "Error creating card", message: "We're sorry, there was a problem creating a new card. Please try again.")
     }
+  }
+  
+  func addImage(image: UIImage) -> String? {
+    let data = UIImage.pngData(image)
+    guard let directory = try? FileManager.default.url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: false) as NSURL else { return nil }
+    do {
+      let imageFilename = "\(UUID().uuidString).png"
+      try data()!.write(to: directory.appendingPathComponent(imageFilename)!)
+      return imageFilename
+    } catch {
+      print("Could not save image")
+      return nil
+    }
+    
   }
   
   func isTextFieldFilledOn(side: CardSide) -> Bool {
@@ -195,6 +231,7 @@ class AddCardViewController: UIViewController, UITextFieldDelegate, UITextViewDe
         }
       })
       isReversedCardShowing = true
+      setupStaticViews(for: .rear)
     } else {
       UIView.transition(with: cardView, duration: 0.4, options: .transitionFlipFromRight, animations: {
         UIView.animate(withDuration: 0.4, animations: {
@@ -207,8 +244,26 @@ class AddCardViewController: UIViewController, UITextFieldDelegate, UITextViewDe
         }
       })
       isReversedCardShowing = false
+      setupStaticViews(for: .front)
     }
     
+  }
+  
+  func setupStaticViews(for cardFace: CardSide) {
+    switch cardFace {
+    case .front:
+      if cardFrontImageView!.image != nil {
+        addImageButton.setImage(UIImage(named: "add-image-button-filled"), for: UIControl.State.normal)
+      } else {
+        addImageButton.setImage(UIImage(named: "add-image-button"), for: UIControl.State.normal)
+      }
+    case .rear:
+      if reverseCardImageView!.image != nil {
+        addImageButton.setImage(UIImage(named: "add-image-button-filled"), for: UIControl.State.normal)
+      } else {
+        addImageButton.setImage(UIImage(named: "add-image-button"), for: UIControl.State.normal)
+      }
+    }
   }
   
   //
@@ -221,4 +276,16 @@ class AddCardViewController: UIViewController, UITextFieldDelegate, UITextViewDe
     self.present(alert, animated: true)
   }
 
+}
+
+extension AddCardViewController: ImagePickerDelegate {
+  
+  func didSelect(image: UIImage?) {
+    if isReversedCardShowing {
+      reverseCardImageView.image = image
+    } else {
+      cardFrontImageView.image = image
+    }
+  }
+  
 }

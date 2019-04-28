@@ -357,8 +357,14 @@
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="G0k-hU-ieN">
                                         <rect key="frame" x="20" y="258" width="294" height="180"/>
                                         <subviews>
+                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="fcq-IS-0NJ">
+                                                <rect key="frame" x="122" y="0.0" width="50" height="50"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" secondItem="fcq-IS-0NJ" secondAttribute="height" multiplier="1:1" id="B4t-Yx-jJa"/>
+                                                </constraints>
+                                            </imageView>
                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Rear of card..." textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="sBY-Na-1lc">
-                                                <rect key="frame" x="0.0" y="0.0" width="294" height="39"/>
+                                                <rect key="frame" x="0.0" y="60" width="294" height="31.5"/>
                                                 <nil key="textColor"/>
                                                 <fontDescription key="fontDescription" name="HKGrotesk-SemiBold" family="HK Grotesk" pointSize="32"/>
                                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences" autocorrectionType="no" spellCheckingType="no"/>
@@ -366,14 +372,14 @@
                                                     <outlet property="delegate" destination="el4-hV-8jh" id="KE1-GJ-6q6"/>
                                                 </connections>
                                             </textField>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Please fill out text for the rear" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5LP-pB-tw9">
-                                                <rect key="frame" x="48.5" y="49" width="197.5" height="18.5"/>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Please provide a name or image for the rear" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5LP-pB-tw9">
+                                                <rect key="frame" x="3" y="101.5" width="288.5" height="18.5"/>
                                                 <fontDescription key="fontDescription" name="HKGrotesk-SemiBold" family="HK Grotesk" pointSize="15"/>
                                                 <color key="textColor" red="0.96862745100000003" green="0.3005404538" blue="0.10980392160000001" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="Y1s-2m-byh">
-                                                <rect key="frame" x="0.0" y="77.5" width="294" height="102.5"/>
+                                                <rect key="frame" x="0.0" y="130" width="294" height="50"/>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
@@ -383,6 +389,7 @@
                                             </textView>
                                         </subviews>
                                         <constraints>
+                                            <constraint firstItem="fcq-IS-0NJ" firstAttribute="width" secondItem="fcq-IS-0NJ" secondAttribute="height" multiplier="1:1" id="1tm-Mq-WkQ"/>
                                             <constraint firstItem="sBY-Na-1lc" firstAttribute="leading" secondItem="G0k-hU-ieN" secondAttribute="leading" id="3OG-ua-XN2"/>
                                             <constraint firstItem="Y1s-2m-byh" firstAttribute="leading" secondItem="G0k-hU-ieN" secondAttribute="leading" id="4v2-k1-QzU"/>
                                             <constraint firstAttribute="height" constant="180" id="8Ow-5v-xNC"/>
@@ -393,8 +400,14 @@
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="Xn2-ot-DLV">
                                         <rect key="frame" x="20" y="258" width="294" height="180"/>
                                         <subviews>
+                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="ihY-3p-Hb5">
+                                                <rect key="frame" x="122" y="0.0" width="50" height="50"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" secondItem="ihY-3p-Hb5" secondAttribute="height" multiplier="1:1" id="qcR-wE-rfI"/>
+                                                </constraints>
+                                            </imageView>
                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Front of card..." textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="fy8-N2-0I3">
-                                                <rect key="frame" x="0.0" y="0.0" width="294" height="39"/>
+                                                <rect key="frame" x="0.0" y="60" width="294" height="31.5"/>
                                                 <nil key="textColor"/>
                                                 <fontDescription key="fontDescription" name="HKGrotesk-SemiBold" family="HK Grotesk" pointSize="32"/>
                                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences" autocorrectionType="no" spellCheckingType="no"/>
@@ -402,14 +415,14 @@
                                                     <outlet property="delegate" destination="el4-hV-8jh" id="ric-ja-N8i"/>
                                                 </connections>
                                             </textField>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Please fill out text for the front" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aye-tZ-qQj">
-                                                <rect key="frame" x="45.5" y="49" width="203" height="18.5"/>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Please provide a name or image for the front" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aye-tZ-qQj">
+                                                <rect key="frame" x="0.0" y="101.5" width="294" height="18.5"/>
                                                 <fontDescription key="fontDescription" name="HKGrotesk-SemiBold" family="HK Grotesk" pointSize="15"/>
                                                 <color key="textColor" red="0.96862745098039216" green="0.30054045376712329" blue="0.10980392156862745" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="eIf-RZ-0ue">
-                                                <rect key="frame" x="0.0" y="77.5" width="294" height="102.5"/>
+                                                <rect key="frame" x="0.0" y="130" width="294" height="50"/>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
@@ -426,14 +439,43 @@
                                             <constraint firstItem="eIf-RZ-0ue" firstAttribute="leading" secondItem="Xn2-ot-DLV" secondAttribute="leading" id="vHz-6P-WoO"/>
                                         </constraints>
                                     </stackView>
+                                    <stackView opaque="NO" contentMode="scaleToFill" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="Usc-Ke-Bfz">
+                                        <rect key="frame" x="222" y="20" width="92" height="40"/>
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="llv-EC-QZj">
+                                                <rect key="frame" x="0.0" y="0.0" width="40" height="40"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="40" id="nsY-MI-Sx6"/>
+                                                    <constraint firstAttribute="height" constant="40" id="sM1-C2-i8I"/>
+                                                </constraints>
+                                                <state key="normal" image="add-sound-button"/>
+                                                <connections>
+                                                    <action selector="handleTapAddSoundButton:" destination="el4-hV-8jh" eventType="touchUpInside" id="KAZ-ua-4Cp"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="913-dx-JsD">
+                                                <rect key="frame" x="52" y="0.0" width="40" height="40"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="40" id="BXM-8q-dwx"/>
+                                                    <constraint firstAttribute="height" constant="40" id="Fr3-4o-zhA"/>
+                                                </constraints>
+                                                <state key="normal" image="add-image-button"/>
+                                                <connections>
+                                                    <action selector="handleTapAddImageButton:" destination="el4-hV-8jh" eventType="touchUpInside" id="rTG-6u-n08"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
+                                    </stackView>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstItem="Xn2-ot-DLV" firstAttribute="leading" secondItem="Dq2-Gy-DnJ" secondAttribute="leading" constant="20" id="4Uc-wv-ABd"/>
+                                    <constraint firstItem="Usc-Ke-Bfz" firstAttribute="top" secondItem="Dq2-Gy-DnJ" secondAttribute="top" constant="20" id="F1U-1X-pVL"/>
                                     <constraint firstItem="Xn2-ot-DLV" firstAttribute="centerY" secondItem="Dq2-Gy-DnJ" secondAttribute="centerY" id="Gdt-cq-Hjh"/>
                                     <constraint firstAttribute="trailing" secondItem="Xn2-ot-DLV" secondAttribute="trailing" constant="20" id="Jq1-Nk-rCx"/>
                                     <constraint firstItem="G0k-hU-ieN" firstAttribute="leading" secondItem="Dq2-Gy-DnJ" secondAttribute="leading" constant="20" id="ZKU-po-Ryf"/>
                                     <constraint firstItem="G0k-hU-ieN" firstAttribute="centerY" secondItem="Dq2-Gy-DnJ" secondAttribute="centerY" id="ZWQ-WO-nkq"/>
+                                    <constraint firstAttribute="trailing" secondItem="Usc-Ke-Bfz" secondAttribute="trailing" constant="20" id="cJs-ht-7uH"/>
                                     <constraint firstItem="G0k-hU-ieN" firstAttribute="centerX" secondItem="Dq2-Gy-DnJ" secondAttribute="centerX" id="htG-Ls-Bc2"/>
                                     <constraint firstAttribute="trailing" secondItem="G0k-hU-ieN" secondAttribute="trailing" constant="20" id="nYR-6T-Tvo"/>
                                     <constraint firstItem="Xn2-ot-DLV" firstAttribute="centerX" secondItem="Dq2-Gy-DnJ" secondAttribute="centerX" id="s0z-td-cGr"/>
@@ -483,6 +525,9 @@
                     </view>
                     <connections>
                         <outlet property="actionButtonsStackViewBottomConstraint" destination="XJw-Pu-fVd" id="EYT-1H-qjd"/>
+                        <outlet property="addImageButton" destination="913-dx-JsD" id="x2d-hg-BND"/>
+                        <outlet property="addSoundButton" destination="llv-EC-QZj" id="CNM-fN-UXG"/>
+                        <outlet property="cardFrontImageView" destination="ihY-3p-Hb5" id="y9I-OL-Tzy"/>
                         <outlet property="cardFrontNotesTextField" destination="eIf-RZ-0ue" id="7ly-NM-t36"/>
                         <outlet property="cardFrontTextErrorLabel" destination="aye-tZ-qQj" id="133-3m-9wn"/>
                         <outlet property="cardFrontTextField" destination="fy8-N2-0I3" id="qO5-9v-Amv"/>
@@ -491,6 +536,7 @@
                         <outlet property="cardViewBottomDistanceConstraint" destination="h7N-yV-AOZ" id="e24-c9-Cb2"/>
                         <outlet property="cardViewLeadingConstraint" destination="HjC-47-IpQ" id="TCZ-L3-4zH"/>
                         <outlet property="cardViewTrailingConstraint" destination="iAK-cs-sWN" id="ST5-Xg-Wjj"/>
+                        <outlet property="reverseCardImageView" destination="fcq-IS-0NJ" id="Nbk-Ni-nBq"/>
                         <outlet property="reverseCardNotesTextField" destination="Y1s-2m-byh" id="byh-aG-uqI"/>
                         <outlet property="reverseCardStackView" destination="G0k-hU-ieN" id="RK8-4t-VEx"/>
                         <outlet property="reverseCardTextErrorLabel" destination="5LP-pB-tw9" id="Cjs-aI-gQb"/>
@@ -531,6 +577,8 @@
     <resources>
         <image name="add-button-filled" width="72" height="72"/>
         <image name="add-button-white" width="76" height="76"/>
+        <image name="add-image-button" width="40" height="40"/>
+        <image name="add-sound-button" width="40" height="40"/>
         <image name="close-icon" width="18" height="18"/>
         <image name="flip-button-white" width="76" height="76"/>
         <image name="next-button-filled" width="72" height="72"/>
