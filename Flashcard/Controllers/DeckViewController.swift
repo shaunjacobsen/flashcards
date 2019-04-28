@@ -16,6 +16,8 @@ class DeckViewController: UIViewController, UITableViewDelegate, UITableViewData
   var cardsForReview: [Card]?
   let now = DateInRegion()
   
+  private let refreshControl = UIRefreshControl()
+  
   //
   // MARK: - IBOutlets
   //
@@ -48,6 +50,14 @@ class DeckViewController: UIViewController, UITableViewDelegate, UITableViewData
     cardTable.separatorStyle = .none
     cardTable.rowHeight = UITableView.automaticDimension
     cardTable.estimatedRowHeight = 50
+    
+    if #available(iOS 10.0, *) {
+      cardTable.refreshControl = refreshControl
+    } else {
+      cardTable.addSubview(refreshControl)
+    }
+    
+    refreshControl.addTarget(self, action: #selector(refreshCards(_:)), for: .valueChanged)
 
     startReviewButton.layer.cornerRadius = 6
     startReviewButton.layer.shadowColor = UIColor.black.cgColor
@@ -67,7 +77,14 @@ class DeckViewController: UIViewController, UITableViewDelegate, UITableViewData
       let timestamp = Date()
       cardsForReview = Array(deck.cards).filter { $0.nextReview < timestamp }
       
-      if cardsForReview!.count > 0 {
+      if deck.cards.count == 0 {
+        startReviewButton.isEnabled = false
+        startReviewLabel.isHidden = true
+        startReviewAuxLabel.font = UIFont.init(name: "HKGrotesk-Medium", size: 24.0)
+        startReviewAuxLabel.adjustsFontSizeToFitWidth = true
+        startReviewAuxLabel.text = "Add cards to begin reviewing"
+      } else if cardsForReview!.count > 0 {
+        startReviewLabel.isHidden = false
         startReviewButton.isEnabled = true
         startReviewLabel.font = UIFont.init(name: "HKGrotesk-Bold", size: 48.0)
         startReviewLabel.text = String(describing: cardsForReview!.count)
@@ -77,6 +94,7 @@ class DeckViewController: UIViewController, UITableViewDelegate, UITableViewData
           startReviewAuxLabel.text = "cards to review"
         }
       } else {
+        startReviewLabel.isHidden = false
         startReviewButton.isEnabled = false
         startReviewLabel.font = UIFont.init(name: "Helvetica", size: 36.0)
         startReviewLabel.text = "🏅"
@@ -115,13 +133,14 @@ class DeckViewController: UIViewController, UITableViewDelegate, UITableViewData
         cell.cardAuxLabel.textColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.5)
         cell.cardAuxLabel.text = "next review \(colloquialDate)"
       }
-      
-      
     }
     
-    
-    
     return cell
+  }
+  
+  @objc private func refreshCards(_ sender: Any) {
+    cardTable.reloadData()
+    self.refreshControl.endRefreshing()
   }
   
   //

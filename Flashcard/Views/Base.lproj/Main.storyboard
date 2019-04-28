@@ -139,11 +139,11 @@
                                     </button>
                                 </subviews>
                             </stackView>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="zCc-Nn-hMb">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="zCc-Nn-hMb">
                                 <rect key="frame" x="0.0" y="330" width="414" height="512"/>
                                 <color key="backgroundColor" red="0.96862745100000003" green="0.97647058819999999" blue="0.98823529409999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="CardCell" id="5IW-F2-kyD">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="CardCell" id="5IW-F2-kyD">
                                         <rect key="frame" x="0.0" y="28" width="414" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="5IW-F2-kyD" id="HKY-j2-e9X">
@@ -270,19 +270,33 @@
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="e.g. French vocabulary" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="Tnt-MX-jIH">
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pT3-XJ-nGp">
                                         <rect key="frame" x="0.0" y="28.5" width="374" height="60"/>
+                                        <subviews>
+                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="e.g. French vocabulary" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="Tnt-MX-jIH">
+                                                <rect key="frame" x="10" y="0.0" width="354" height="60"/>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="60" id="Prf-XC-wWS"/>
+                                                </constraints>
+                                                <nil key="textColor"/>
+                                                <fontDescription key="fontDescription" name="HKGrotesk-Regular" family="HK Grotesk" pointSize="22"/>
+                                                <textInputTraits key="textInputTraits" autocapitalizationType="words" autocorrectionType="yes" returnKeyType="done" enablesReturnKeyAutomatically="YES"/>
+                                            </textField>
+                                        </subviews>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="60" id="Prf-XC-wWS"/>
+                                            <constraint firstAttribute="trailing" secondItem="Tnt-MX-jIH" secondAttribute="trailing" constant="10" id="E9E-6a-Gok"/>
+                                            <constraint firstItem="Tnt-MX-jIH" firstAttribute="top" secondItem="pT3-XJ-nGp" secondAttribute="top" id="HcM-M0-7FE"/>
+                                            <constraint firstItem="Tnt-MX-jIH" firstAttribute="leading" secondItem="pT3-XJ-nGp" secondAttribute="leading" constant="10" id="Z8f-eW-SU1"/>
+                                            <constraint firstAttribute="bottom" secondItem="Tnt-MX-jIH" secondAttribute="bottom" id="cWb-8p-96j"/>
                                         </constraints>
-                                        <nil key="textColor"/>
-                                        <fontDescription key="fontDescription" name="HKGrotesk-Regular" family="HK Grotesk" pointSize="22"/>
-                                        <textInputTraits key="textInputTraits" autocapitalizationType="words" autocorrectionType="yes" returnKeyType="done" enablesReturnKeyAutomatically="YES"/>
-                                    </textField>
+                                    </view>
                                 </subviews>
                                 <constraints>
-                                    <constraint firstAttribute="trailing" secondItem="Tnt-MX-jIH" secondAttribute="trailing" id="D0p-Bw-eTr"/>
-                                    <constraint firstItem="Tnt-MX-jIH" firstAttribute="leading" secondItem="Xu6-Mq-8aM" secondAttribute="leading" id="PM9-yZ-1SP"/>
+                                    <constraint firstItem="pT3-XJ-nGp" firstAttribute="leading" secondItem="Xu6-Mq-8aM" secondAttribute="leading" id="7X0-Xd-bod"/>
+                                    <constraint firstAttribute="bottom" secondItem="pT3-XJ-nGp" secondAttribute="bottom" id="e6T-Ch-o6Z"/>
+                                    <constraint firstAttribute="trailing" secondItem="pT3-XJ-nGp" secondAttribute="trailing" id="ew2-nH-IhL"/>
                                 </constraints>
                             </stackView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HDA-M5-VVn">
@@ -309,12 +323,13 @@
                     </view>
                     <connections>
                         <outlet property="textField" destination="Tnt-MX-jIH" id="tcr-YW-nii"/>
+                        <outlet property="textFieldView" destination="pT3-XJ-nGp" id="Pr6-Rg-hdx"/>
                         <segue destination="aX0-MM-RKM" kind="show" identifier="goToDeckFromNewDeckSegue" id="JTz-BV-GfT"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="oab-ja-nCa" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3080" y="931"/>
+            <point key="canvasLocation" x="3079.7101449275365" y="930.80357142857133"/>
         </scene>
         <!--Add Card View Controller-->
         <scene sceneID="Fh9-UV-irx">

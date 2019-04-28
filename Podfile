@@ -8,4 +8,5 @@ target 'Flashcard' do
   # Pods for Flashcard
   pod 'RealmSwift'
   pod 'SwiftDate'
+  pod 'Firebase/Core'
 end

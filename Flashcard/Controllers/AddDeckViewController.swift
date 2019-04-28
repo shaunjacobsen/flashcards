@@ -19,13 +19,18 @@ class AddDeckViewController: UIViewController, UITextFieldDelegate {
   // MARK: - IBOutlets
   //
   
+  @IBOutlet weak var textFieldView: UIView!
   @IBOutlet weak var textField: UITextField!
   
   override func viewDidLoad() {
     super.viewDidLoad()
     
-    textField.layer.backgroundColor = UIColor.clear.cgColor
     textField.layer.borderWidth = 0
+    textFieldView.layer.cornerRadius = 6
+    textFieldView.layer.shadowColor = UIColor.black.cgColor
+    textFieldView.layer.shadowOpacity = 0.08
+    textFieldView.layer.shadowOffset = CGSize(width: 0, height: 3)
+    textFieldView.layer.shadowRadius = 4
 
   }
   

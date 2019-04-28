@@ -1,0 +1,67 @@
+# This file contains the fastlane.tools configuration
+# You can find the documentation at https://docs.fastlane.tools
+#
+# For a list of all available actions, check out
+#
+#     https://docs.fastlane.tools/actions
+#
+# For a list of all available plugins, check out
+#
+#     https://docs.fastlane.tools/plugins/available-plugins
+#
+
+# Uncomment the line if you want fastlane to automatically update itself
+# update_fastlane
+
+default_platform(:ios)
+
+platform :ios do
+  desc "Description of what the lane does"
+  lane :custom_lane do
+    # add actions here: https://docs.fastlane.tools/actions
+  end
+end
+
+lane :beta do
+  pem(
+    username: "shaun@sjacobsen.com",
+    app_identifier: "com.sjacobsen.Flashcard"
+  )
+
+  register_devices(
+    devices_file: "./fastlane/devices.txt",
+    username: "shaun@sjacobsen.com"
+  )
+
+  match(
+    type: "adhoc",
+    app_identifier: "com.sjacobsen.Flashcard",
+    readonly: true,
+    force_for_new_devices: true
+  )
+  
+  increment_build_number(
+    xcodeproj: './Flashcard.xcodeproj'
+  )
+
+  gym(
+    scheme: 'Flashcard',
+    export_method: 'ad-hoc'
+  )
+
+  clean_build_artifacts
+
+  commit_version_bump(
+    message: "👷 Deployed new version #{lane_context[SharedValues::BUILD_NUMBER]} [skip ci]",
+    xcodeproj: './Flashcard.xcodeproj',
+    force: true
+  )
+
+  aws_s3(
+    access_key: ENV['S3_KEY'],
+    secret_access_key: ENV['S3_SECRET'],
+    bucket: 'remembr-app-dist',
+    region: 'eu-west-3',
+    app_directory: 'beta'
+  )
+end
