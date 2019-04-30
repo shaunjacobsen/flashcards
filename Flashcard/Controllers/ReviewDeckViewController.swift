@@ -211,5 +211,4 @@ extension ReviewDeckViewController: TappableCardDelegate {
     print("Long press")
   }
   
-  
 }
