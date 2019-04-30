@@ -28,6 +28,7 @@
 		561684BF225182D70083BA11 /* CardCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 561684BE225182D70083BA11 /* CardCell.xib */; };
 		561684C1225182EB0083BA11 /* CardCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 561684C0225182EB0083BA11 /* CardCell.swift */; };
 		561684C3225188F00083BA11 /* AddCardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 561684C2225188F00083BA11 /* AddCardViewController.swift */; };
+		5633F4DB2276615B00FAABDC /* ImagePickerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5633F4DA2276615B00FAABDC /* ImagePickerController.swift */; };
 		5633F4DE2276AE0B00FAABDC /* AddCardInputAccessoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5633F4DD2276AE0B00FAABDC /* AddCardInputAccessoryView.swift */; };
 		5633F4E02276AE1400FAABDC /* AddCardInputAccessoryView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5633F4DF2276AE1400FAABDC /* AddCardInputAccessoryView.xib */; };
 		568118342266B3CB007EB308 /* ReviewDeckViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 568118332266B3CB007EB308 /* ReviewDeckViewController.swift */; };
@@ -64,6 +65,7 @@
 		561684BE225182D70083BA11 /* CardCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CardCell.xib; sourceTree = "<group>"; };
 		561684C0225182EB0083BA11 /* CardCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardCell.swift; sourceTree = "<group>"; };
 		561684C2225188F00083BA11 /* AddCardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCardViewController.swift; sourceTree = "<group>"; };
+		5633F4DA2276615B00FAABDC /* ImagePickerController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePickerController.swift; sourceTree = "<group>"; };
 		5633F4DD2276AE0B00FAABDC /* AddCardInputAccessoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCardInputAccessoryView.swift; sourceTree = "<group>"; };
 		5633F4DF2276AE1400FAABDC /* AddCardInputAccessoryView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AddCardInputAccessoryView.xib; sourceTree = "<group>"; };
 		568118332266B3CB007EB308 /* ReviewDeckViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewDeckViewController.swift; sourceTree = "<group>"; };
@@ -222,6 +224,7 @@
 			isa = PBXGroup;
 			children = (
 				5681183D2266B74E007EB308 /* UIView.swift */,
+				5633F4DA2276615B00FAABDC /* ImagePickerController.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -386,6 +389,7 @@
 				56AD40422273B453002FC19D /* CardPerformance.swift in Sources */,
 				568118372266B457007EB308 /* SwipeableCard.swift in Sources */,
 				561684BC225022630083BA11 /* AddDeckViewController.swift in Sources */,
+				5633F4DB2276615B00FAABDC /* ImagePickerController.swift in Sources */,
 				5616848D224FF18C0083BA11 /* AppDelegate.swift in Sources */,
 				5681183E2266B74E007EB308 /* UIView.swift in Sources */,
 				561684A4225009010083BA11 /* Card.swift in Sources */,

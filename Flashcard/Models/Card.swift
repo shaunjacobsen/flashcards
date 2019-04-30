@@ -14,6 +14,9 @@ class Card: Object {
   @objc dynamic var questionNotes: String?
   @objc dynamic var answerText: String = ""
   @objc dynamic var answerNotes: String?
+  @objc dynamic var image: String?
+  @objc dynamic var shouldSpeak: Bool = false
+  @objc dynamic var spokenDialect: String?
   @objc dynamic var inverseOf: Card?
   @objc dynamic var lastAnswerMood: String?
   @objc dynamic var lastReview: Date?
