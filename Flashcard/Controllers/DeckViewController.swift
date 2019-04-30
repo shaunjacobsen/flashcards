@@ -151,16 +151,6 @@ class DeckViewController: UIViewController, UITableViewDelegate, UITableViewData
     cards = selectedDeck?.cards.sorted(byKeyPath: "nextReview", ascending: true)
   }
   
-//  func displayNextReviewDateFrom(duration: Duration) -> String {
-//    let seconds = duration.seconds
-//    switch seconds {
-//    case -1...86400:
-//      return "\(ceil(seconds / 60).rounded()) minutes"
-//    default:
-//      return ""
-//    }
-//  }
-  
   //
   // MARK: - Navigation
   //

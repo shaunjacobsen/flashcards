@@ -22,6 +22,7 @@ class AddCardViewController: UIViewController, UITextFieldDelegate, UITextViewDe
   
   var isReversedCardShowing = false
   var isEditingCardText = false
+  var isAutocorrectEnabled = false
   
   //
   // MARK: - IBOutlets
@@ -69,6 +70,19 @@ class AddCardViewController: UIViewController, UITextFieldDelegate, UITextViewDe
   
   let screenSize = UIScreen.main.bounds
   
+  override func viewWillAppear(_ animated: Bool) {
+    super.viewWillAppear(animated)
+    
+    NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillDisappear), name: UIResponder.keyboardWillHideNotification, object: nil)
+    NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillAppear), name: UIResponder.keyboardWillShowNotification, object: nil)
+  }
+  
+  override func viewWillDisappear(_ animated: Bool) {
+    super.viewWillDisappear(animated)
+    
+    NotificationCenter.default.removeObserver(self)
+  }
+  
   override func viewDidLoad() {
     super.viewDidLoad()
     
@@ -88,45 +102,61 @@ class AddCardViewController: UIViewController, UITextFieldDelegate, UITextViewDe
     
     actionButtonsStackViewBottomConstraint.constant = 0
     
+    let inputAccessoryBar = UIToolbar()
+    let autocorrectButton = UIBarButtonItem(title: "Autocorrect", style: .plain, target: self, action: #selector(toggleAutocorrect))
+    inputAccessoryBar.items = [autocorrectButton]
+    inputAccessoryBar.sizeToFit()
+    cardFrontTextField.inputAccessoryView = AddCardInputAccessoryView()
   }
   
   //
-  // MARK: - Text field delegate methods
+  // MARK: - Text field delegate methods & observers
   //
+  
+  @objc func keyboardWillAppear() {
+    UIView.animate(withDuration: 0.2, animations: {
+      self.cardViewBottomDistanceConstraint.constant = 285
+      self.actionButtonsStackViewBottomConstraint.constant = 320
+      self.view.layoutIfNeeded()
+    })
+  }
+  
+  @objc func keyboardWillDisappear() {
+    UIView.animate(withDuration: 0.2, animations: {
+    self.cardViewBottomDistanceConstraint.constant = 40
+    self.actionButtonsStackViewBottomConstraint.constant = 0
+    self.view.layoutIfNeeded()
+    })
+  }
   
   func textFieldDidBeginEditing(_ textField: UITextField) {
     isEditingCardText = true
     hideErrorText()
-    UIView.animate(withDuration: 0.3, animations: {
-      self.cardViewBottomDistanceConstraint.constant = 285
-      self.actionButtonsStackViewBottomConstraint.constant = 320
-      self.view.layoutIfNeeded()
-    })
   }
-  
+
   func textFieldDidEndEditing(_ textField: UITextField) {
     isEditingCardText = false
-    UIView.animate(withDuration: 0.2, animations: {
-      self.cardViewBottomDistanceConstraint.constant = 40
-      self.actionButtonsStackViewBottomConstraint.constant = 0
-      self.view.layoutIfNeeded()
-    })
   }
-  
+
   func textViewDidBeginEditing(_ textField: UITextView) {
-    UIView.animate(withDuration: 0.3, animations: {
-      self.cardViewBottomDistanceConstraint.constant = 285
-      self.actionButtonsStackViewBottomConstraint.constant = 320
-      self.view.layoutIfNeeded()
-    })
+
+  }
+
+  func textViewDidEndEditing(_ textField: UITextView) {
+
   }
   
-  func textViewDidEndEditing(_ textField: UITextView) {
-    UIView.animate(withDuration: 0.2, animations: {
-      self.cardViewBottomDistanceConstraint.constant = 40
-      self.actionButtonsStackViewBottomConstraint.constant = 0
-      self.view.layoutIfNeeded()
-    })
+  @objc func toggleAutocorrect() {
+    if isAutocorrectEnabled {
+      self.cardFrontTextField.autocorrectionType = .no
+      self.cardFrontTextField.spellCheckingType = .no
+      self.isAutocorrectEnabled = false
+    } else {
+      self.cardFrontTextField.autocorrectionType = .yes
+      self.cardFrontTextField.spellCheckingType = .yes
+      self.isAutocorrectEnabled = true
+    }
+    self.cardFrontTextField.reloadInputViews()
   }
   
   //
@@ -136,6 +166,8 @@ class AddCardViewController: UIViewController, UITextFieldDelegate, UITextViewDe
   @objc func cardViewTapped() {
     cardFrontNotesTextField.endEditing(true)
     cardFrontTextField.endEditing(true)
+    reverseCardTextField.endEditing(true)
+    reverseCardNotesTextField.endEditing(true)
   }
   
   //
@@ -182,7 +214,7 @@ class AddCardViewController: UIViewController, UITextFieldDelegate, UITextViewDe
   }
   
   @objc func flipCard() {
-    
+  
     if !isReversedCardShowing {
       UIView.transition(with: cardView, duration: 0.4, options: .transitionFlipFromLeft, animations: {
         UIView.animate(withDuration: 0.4, animations: {
@@ -193,8 +225,9 @@ class AddCardViewController: UIViewController, UITextFieldDelegate, UITextViewDe
         if self.isEditingCardText {
           self.reverseCardTextField.becomeFirstResponder()
         }
+        self.isReversedCardShowing = true
       })
-      isReversedCardShowing = true
+      
     } else {
       UIView.transition(with: cardView, duration: 0.4, options: .transitionFlipFromRight, animations: {
         UIView.animate(withDuration: 0.4, animations: {
@@ -205,9 +238,10 @@ class AddCardViewController: UIViewController, UITextFieldDelegate, UITextViewDe
         if self.isEditingCardText {
           self.cardFrontTextField.becomeFirstResponder()
         }
+        self.isReversedCardShowing = false
       })
-      isReversedCardShowing = false
     }
+    
     
   }
   
