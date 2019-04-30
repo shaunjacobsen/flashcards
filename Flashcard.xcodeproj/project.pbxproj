@@ -29,6 +29,8 @@
 		561684C1225182EB0083BA11 /* CardCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 561684C0225182EB0083BA11 /* CardCell.swift */; };
 		561684C3225188F00083BA11 /* AddCardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 561684C2225188F00083BA11 /* AddCardViewController.swift */; };
 		5633F4DB2276615B00FAABDC /* ImagePickerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5633F4DA2276615B00FAABDC /* ImagePickerController.swift */; };
+		5633F4DE2276AE0B00FAABDC /* AddCardInputAccessoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5633F4DD2276AE0B00FAABDC /* AddCardInputAccessoryView.swift */; };
+		5633F4E02276AE1400FAABDC /* AddCardInputAccessoryView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5633F4DF2276AE1400FAABDC /* AddCardInputAccessoryView.xib */; };
 		568118342266B3CB007EB308 /* ReviewDeckViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 568118332266B3CB007EB308 /* ReviewDeckViewController.swift */; };
 		568118372266B457007EB308 /* SwipeableCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 568118362266B457007EB308 /* SwipeableCard.swift */; };
 		568118392266B47A007EB308 /* SwipeableCard.xib in Resources */ = {isa = PBXBuildFile; fileRef = 568118382266B47A007EB308 /* SwipeableCard.xib */; };
@@ -64,6 +66,8 @@
 		561684C0225182EB0083BA11 /* CardCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardCell.swift; sourceTree = "<group>"; };
 		561684C2225188F00083BA11 /* AddCardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCardViewController.swift; sourceTree = "<group>"; };
 		5633F4DA2276615B00FAABDC /* ImagePickerController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePickerController.swift; sourceTree = "<group>"; };
+		5633F4DD2276AE0B00FAABDC /* AddCardInputAccessoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCardInputAccessoryView.swift; sourceTree = "<group>"; };
+		5633F4DF2276AE1400FAABDC /* AddCardInputAccessoryView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AddCardInputAccessoryView.xib; sourceTree = "<group>"; };
 		568118332266B3CB007EB308 /* ReviewDeckViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewDeckViewController.swift; sourceTree = "<group>"; };
 		568118362266B457007EB308 /* SwipeableCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwipeableCard.swift; sourceTree = "<group>"; };
 		568118382266B47A007EB308 /* SwipeableCard.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SwipeableCard.xib; sourceTree = "<group>"; };
@@ -146,6 +150,7 @@
 		5616849F224FF1AA0083BA11 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				5633F4DC2276ADE700FAABDC /* InputAccessory */,
 				56168490224FF18C0083BA11 /* Main.storyboard */,
 				568118352266B435007EB308 /* CardView */,
 				561684BD225182C30083BA11 /* CardCell */,
@@ -195,6 +200,15 @@
 				561684C0225182EB0083BA11 /* CardCell.swift */,
 			);
 			path = CardCell;
+			sourceTree = "<group>";
+		};
+		5633F4DC2276ADE700FAABDC /* InputAccessory */ = {
+			isa = PBXGroup;
+			children = (
+				5633F4DD2276AE0B00FAABDC /* AddCardInputAccessoryView.swift */,
+				5633F4DF2276AE1400FAABDC /* AddCardInputAccessoryView.xib */,
+			);
+			path = InputAccessory;
 			sourceTree = "<group>";
 		};
 		568118352266B435007EB308 /* CardView */ = {
@@ -292,6 +306,7 @@
 				561684B422500FC50083BA11 /* HKGrotesk-Medium.otf in Resources */,
 				561684B522500FC50083BA11 /* HKGrotesk-Light.otf in Resources */,
 				56168497224FF18D0083BA11 /* LaunchScreen.storyboard in Resources */,
+				5633F4E02276AE1400FAABDC /* AddCardInputAccessoryView.xib in Resources */,
 				568118392266B47A007EB308 /* SwipeableCard.xib in Resources */,
 				56168494224FF18D0083BA11 /* Assets.xcassets in Resources */,
 				56168492224FF18C0083BA11 /* Main.storyboard in Resources */,
@@ -366,6 +381,7 @@
 				568118342266B3CB007EB308 /* ReviewDeckViewController.swift in Sources */,
 				561684A2225008320083BA11 /* Deck.swift in Sources */,
 				561684BA22501E130083BA11 /* DeckViewController.swift in Sources */,
+				5633F4DE2276AE0B00FAABDC /* AddCardInputAccessoryView.swift in Sources */,
 				56AD40402273AFDA002FC19D /* SpacedRepetitionCalculator.swift in Sources */,
 				5616848F224FF18C0083BA11 /* DecksViewController.swift in Sources */,
 				561684C3225188F00083BA11 /* AddCardViewController.swift in Sources */,
